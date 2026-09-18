@@ -32,13 +32,29 @@ Long or 4K videos are processed on your computer, and a progress bubble in the c
 
 ## Install
 
-The extension isn't on the Chrome Web Store (the Store doesn't allow YouTube downloaders), so load it directly:
+**Chrome, from source:**
 
 1. Open `chrome://extensions` and switch on **Developer mode** (top right). Leave it on; Chrome disables unpacked extensions when it's off.
 2. Click **Load unpacked** and choose the **`extension`** folder inside this project (not the project folder itself).
 3. Open YouTube or Instagram. You'll see the Download buttons.
 
 To update after changes, click the reload icon on the extension's card in `chrome://extensions`. Open tabs pick up the new version automatically.
+
+**Firefox, from source** (Firefox 140 or newer):
+
+1. `npm install`, then `npm run build:firefox`. The Firefox build lands in `dist/firefox/`.
+2. Open `about:debugging#/runtime/this-firefox`, click **Load Temporary Add-on…** and pick `dist/firefox/manifest.json`.
+3. If Firefox asks, allow the extension to access all websites (it needs that to add its buttons and fetch the files).
+
+## Building from source
+
+The extension has no build step except for two vendored bundles, which are committed so the `extension` folder runs as it is. For reviewers who want to reproduce them:
+
+- Requirements: Node.js 20 or newer (built with Node 24.14 and npm 11.9) on Windows, macOS or Linux.
+- `npm ci` installs the exact dependency versions from `package-lock.json`.
+- `npm run vendor` rebuilds `extension/vendor/media.mjs` and `mp3-encoder.worker.js` (Mediabunny 1.57 and `@mediabunny/mp3-encoder`, bundled with esbuild) and `extension/vendor/gifenc.mjs` (gifenc 1.0.3) from `node_modules`. See `scripts/vendor.mjs`.
+- `npm run build:firefox` copies `extension/` to `dist/firefox/` and writes the Firefox manifest (`scripts/build-firefox.mjs`). The packed add-on is `npx web-ext build -s dist/firefox`.
+- Every other file is shipped exactly as it is in this repository: plain JavaScript, HTML and CSS, not minified.
 
 ## Use
 
