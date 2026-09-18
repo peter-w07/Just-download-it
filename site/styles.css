@@ -418,9 +418,9 @@ a.store-btn[href]:active { transform: translateY(1px); }
 
 .hero-inner { display: flex; flex-direction: column; align-items: center; }
 
-/* The video at the very top: a poster button until played, then the YouTube player. */
+/* The video, under the title and above the store buttons: a poster until played, then the YouTube player. */
 .hero-video {
-  position: relative; width: 100%; max-width: 960px; margin: 0 auto 40px;
+  position: relative; width: 100%; max-width: 960px; margin: 36px auto 0;
   aspect-ratio: 16 / 9; border-radius: var(--radius); overflow: hidden;
   background: #0b1020; box-shadow: 0 0 0 1px var(--frame-ring), var(--shadow-lg);
 }
@@ -443,7 +443,7 @@ a.store-btn[href]:active { transform: translateY(1px); }
 .video-poster:hover .video-play { transform: scale(1.06); }
 .video-poster:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: var(--radius); }
 @media (max-width: 600px) {
-  .hero-video { margin-bottom: 28px; border-radius: var(--radius-sm); }
+  .hero-video { margin-top: 28px; border-radius: var(--radius-sm); }
   .video-meta { top: 10px; bottom: auto; left: 10px; padding: 4px 10px; font-size: 12px; }
   .video-play { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
   .video-play svg { width: 26px; height: 26px; }
