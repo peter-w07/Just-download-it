@@ -1,0 +1,32 @@
+{
+  "name": "just-download-it",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Chrome extension: right-click any photo or video and just download it, in the quality you pick.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"test/unit/*.test.js\"",
+    "test:e2e": "node test/e2e/run.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "build:firefox": "node scripts/build-firefox.mjs",
+    "test:firefox": "node test/firefox/run.mjs",
+    "lint:firefox": "npm run build:firefox && npx --yes web-ext lint -s dist/firefox"
+  },
+  "devDependencies": {
+    "@mediabunny/mp3-encoder": "^1.57.0",
+    "@xmldom/xmldom": "^0.9.12",
+    "esbuild": "^0.28.2",
+    "gifenc": "^1.0.3",
+    "mediabunny": "^1.57.0",
+    "puppeteer": "^24.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peter-w07/Just-download-it.git"
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Just download it</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="../icons/icon-32.png" alt="" width="24" height="24" />
+      <h1>Just download it</h1>
+      <button id="settings" class="icon-button" type="button" title="Settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+      </button>
+    </header>
+
+    <section id="access" class="access" aria-labelledby="access-title" hidden>
+      <h2 id="access-title">Allow access to websites</h2>
+      <p>Just download it can’t read the pages you visit yet, so it can’t find their videos, songs and photos or look up links.</p>
+      <button id="grant-access" class="primary" type="button">Allow access</button>
+    </section>
+
+    <form id="form" class="link" autocomplete="off">
+      <label class="sr-only" for="link">Link to download</label>
+      <input id="link" type="text" inputmode="url" spellcheck="false" placeholder="Paste a link to download" autofocus />
+      <button id="go" class="primary" type="submit">Get</button>
+    </form>
+    <button id="this-tab" class="this-tab" type="button" hidden></button>
+
+    <main id="result" class="result" aria-live="polite"></main>
+
+    <section class="capture" aria-labelledby="capture-title">
+      <h2 id="capture-title">Save this web page</h2>
+      <div class="capture-buttons">
+        <button id="capture-png" class="secondary" type="button" title="Pick part of the page and save it as a PNG image">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="10" r="1.8" fill="currentColor"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          Image (PNG)
+        </button>
+        <button id="capture-gif" class="secondary" type="button" title="Record part of the page while you scroll, and save it as a GIF">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          GIF
+        </button>
+      </div>
+      <p id="capture-error" class="error" hidden></p>
+    </section>
+
+    <section id="downloads" class="downloads" hidden aria-live="polite"></section>
+
+    <script src="../shared/util.js"></script>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

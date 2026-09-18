@@ -1,0 +1,316 @@
+{
+  "manifest_version": 3,
+  "name": "Just download it",
+  "short_name": "Just download it",
+  "version": "0.4.0",
+  "description": "Download videos, songs, photos and GIFs from YouTube, YouTube Music, Spotify, Apple Music, Instagram, TikTok, X, Twitch, Medal and any site. Free, and it runs on your device.",
+  "minimum_chrome_version": "120",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Just download it",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "permissions": [
+    "contextMenus",
+    "downloads",
+    "offscreen",
+    "scripting",
+    "storage",
+    "unlimitedStorage",
+    "tabCapture",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": [
+        "content/main/facebook-hook.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://www.youtube-nocookie.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/youtube.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.instagram.com/*",
+        "https://instagram.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/instagram.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.tiktok.com/*",
+        "https://m.tiktok.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/tiktok.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://mobile.x.com/*",
+        "https://twitter.com/*",
+        "https://mobile.twitter.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/x.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.twitch.tv/*",
+        "https://clips.twitch.tv/*",
+        "https://m.twitch.tv/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/twitch.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/facebook.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.snapchat.com/*",
+        "https://snapchat.com/*",
+        "https://story.snapchat.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/snapchat.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://music.youtube.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/youtube-music.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://open.spotify.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/spotify.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://music.apple.com/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/apple-music.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://medal.tv/*",
+        "https://www.medal.tv/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/buttons.js",
+        "content/handlers/medal.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://www.youtube-nocookie.com/*",
+        "https://www.instagram.com/*",
+        "https://instagram.com/*",
+        "https://www.tiktok.com/*",
+        "https://m.tiktok.com/*",
+        "https://x.com/*",
+        "https://mobile.x.com/*",
+        "https://twitter.com/*",
+        "https://mobile.twitter.com/*",
+        "https://www.twitch.tv/*",
+        "https://clips.twitch.tv/*",
+        "https://m.twitch.tv/*",
+        "https://www.facebook.com/*",
+        "https://web.facebook.com/*",
+        "https://m.facebook.com/*",
+        "https://www.snapchat.com/*",
+        "https://snapchat.com/*",
+        "https://story.snapchat.com/*",
+        "https://music.youtube.com/*",
+        "https://open.spotify.com/*",
+        "https://music.apple.com/*",
+        "https://medal.tv/*",
+        "https://www.medal.tv/*"
+      ],
+      "js": [
+        "shared/util.js",
+        "content/dom.js",
+        "content/handlers/generic.js",
+        "content/themes.js",
+        "content/picker.js",
+        "content/capture.js",
+        "content/core.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}

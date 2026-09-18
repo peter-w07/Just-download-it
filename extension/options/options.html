@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Just download it · Settings</title>
+    <link rel="icon" href="../icons/icon-32.png" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <header class="page-head">
+        <img src="../icons/icon-128.png" alt="" width="56" height="56" />
+        <div>
+          <h1>Just download it</h1>
+          <p class="lede">Settings. Changes are saved as you make them.</p>
+        </div>
+      </header>
+
+      <section class="card access" id="access" aria-labelledby="access-title" hidden>
+        <div class="card-head">
+          <h2 id="access-title">Allow access to websites</h2>
+          <p class="card-sub">Just download it can’t read the pages you visit yet. It needs to, to show its Download buttons, find the videos, songs and photos on a page, and look up the links you paste. Nothing you browse leaves your computer.</p>
+        </div>
+        <button id="grantAccess" class="button primary" type="button">Allow access</button>
+      </section>
+
+      <nav class="toc" aria-label="Sections">
+        <a href="#downloads">Downloads</a>
+        <a href="#songs">Songs</a>
+        <a href="#mixes">Mixes</a>
+        <a href="#sites">Sites</a>
+        <a href="#how">How to use</a>
+      </nav>
+
+      <!-- 1. Downloads ------------------------------------------------------>
+      <section class="card" id="downloads" aria-labelledby="downloads-title">
+        <div class="card-head">
+          <h2 id="downloads-title">Downloads</h2>
+          <p class="card-sub">Where files go, and how downloading works.</p>
+        </div>
+
+        <div class="preview">
+          <div class="preview-row">
+            <span class="preview-label">A photo from Instagram</span>
+            <span class="path" id="downloadExample"></span>
+          </div>
+        </div>
+
+        <div class="setting">
+          <span class="text">
+            <label class="label" for="folder">Folder inside your Downloads</label>
+            <span class="desc" id="folder-desc">Leave it empty to save straight into Downloads.</span>
+          </span>
+          <input id="folder" class="control text-input" type="text" maxlength="60" spellcheck="false" autocomplete="off" placeholder="Downloads" aria-describedby="folder-desc" />
+        </div>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="perSiteFolders-label">A subfolder for each site</span>
+            <span class="desc" id="perSiteFolders-desc">Instagram, Spotify, YouTube…</span>
+          </span>
+          <input id="perSiteFolders" class="switch" type="checkbox" role="switch" aria-labelledby="perSiteFolders-label" aria-describedby="perSiteFolders-desc" />
+        </label>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="saveAs-label">Ask where to save each file</span>
+            <span class="desc" id="saveAs-desc">Shows <span data-browser>Chrome</span>’s Save As window every time.</span>
+          </span>
+          <input id="saveAs" class="switch" type="checkbox" role="switch" aria-labelledby="saveAs-label" aria-describedby="saveAs-desc" />
+        </label>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="skipPicker-label">Skip the quality menu</span>
+            <span class="desc" id="skipPicker-desc">Save the best quality straight away.</span>
+          </span>
+          <input id="skipPicker" class="switch" type="checkbox" role="switch" aria-labelledby="skipPicker-label" aria-describedby="skipPicker-desc" />
+        </label>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="pageButtons-label">Show Download buttons on supported sites</span>
+            <span class="desc" id="pageButtons-desc">The toolbar button and the right-click menu work either way.</span>
+          </span>
+          <input id="pageButtons" class="switch" type="checkbox" role="switch" aria-labelledby="pageButtons-label" aria-describedby="pageButtons-desc" />
+        </label>
+      </section>
+
+      <!-- 2. Songs ---------------------------------------------------------->
+      <section class="card" id="songs" aria-labelledby="songs-title">
+        <div class="card-head">
+          <h2 id="songs-title">Songs</h2>
+          <p class="card-sub">Spotify, Apple Music and YouTube Music.</p>
+        </div>
+
+        <div class="preview">
+          <div class="preview-row">
+            <span class="preview-label">One song</span>
+            <span class="path" id="songExample"></span>
+          </div>
+          <div class="preview-row">
+            <span class="preview-label">A whole album or playlist</span>
+            <span class="path" id="albumExample"></span>
+          </div>
+        </div>
+
+        <div class="setting" role="radiogroup" aria-labelledby="songFilename-label">
+          <span class="text">
+            <span class="label" id="songFilename-label">File names</span>
+          </span>
+          <span class="control segmented">
+            <label><input type="radio" name="songFilename" value="artist-title" /><span>Artist - Title</span></label>
+            <label><input type="radio" name="songFilename" value="title-artist" /><span>Title - Artist</span></label>
+            <label><input type="radio" name="songFilename" value="title" /><span>Title</span></label>
+          </span>
+        </div>
+
+        <div class="setting" role="radiogroup" aria-labelledby="audioFormat-label" aria-describedby="audioFormat-desc">
+          <span class="text">
+            <span class="label" id="audioFormat-label">Format</span>
+            <span class="desc" id="audioFormat-desc">MP3 plays everywhere. M4A (AAC) keeps the audio exactly as it’s streamed, with no conversion.</span>
+          </span>
+          <span class="control segmented">
+            <label><input type="radio" name="audioFormat" value="mp3" /><span>MP3</span></label>
+            <label><input type="radio" name="audioFormat" value="m4a" /><span>M4A</span></label>
+          </span>
+        </div>
+
+        <div class="setting" role="radiogroup" aria-labelledby="mp3Bitrate-label" aria-describedby="mp3Bitrate-desc">
+          <span class="text">
+            <span class="label" id="mp3Bitrate-label">MP3 quality</span>
+            <span class="desc" id="mp3Bitrate-desc">In kbps. The source audio is about 130–160 kbps, so 256 is plenty. Also used for mixes and videos saved as MP3.</span>
+          </span>
+          <span class="control segmented">
+            <label><input type="radio" name="mp3Bitrate" value="128" /><span>128<span class="sr-only"> kbps</span></span></label>
+            <label><input type="radio" name="mp3Bitrate" value="192" /><span>192<span class="sr-only"> kbps</span></span></label>
+            <label><input type="radio" name="mp3Bitrate" value="256" /><span>256<span class="sr-only"> kbps</span></span></label>
+            <label><input type="radio" name="mp3Bitrate" value="320" /><span>320<span class="sr-only"> kbps</span></span></label>
+          </span>
+        </div>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="embedTags-label">Write tags and cover art</span>
+            <span class="desc" id="embedTags-desc">Title, artist, album, track number and cover, so music apps show them.</span>
+          </span>
+          <input id="embedTags" class="switch" type="checkbox" role="switch" aria-labelledby="embedTags-label" aria-describedby="embedTags-desc" />
+        </label>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="numberTracks-label">Number the tracks</span>
+            <span class="desc" id="numberTracks-desc">When you save a whole album or playlist, each file starts with its place in it: 01, 02…</span>
+          </span>
+          <input id="numberTracks" class="switch" type="checkbox" role="switch" aria-labelledby="numberTracks-label" aria-describedby="numberTracks-desc" />
+        </label>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="collectionFolders-label">Put albums and playlists in their own folder</span>
+            <span class="desc" id="collectionFolders-desc">A folder named after the album or playlist.</span>
+          </span>
+          <input id="collectionFolders" class="switch" type="checkbox" role="switch" aria-labelledby="collectionFolders-label" aria-describedby="collectionFolders-desc" />
+        </label>
+
+        <p class="hint">Spotify and Apple Music lock their own audio, so full songs come from the same song on YouTube Music. Point at MP3 or M4A in the menu to see which one was found.</p>
+      </section>
+
+      <!-- 3. Mixes ---------------------------------------------------------->
+      <section class="card" id="mixes" aria-labelledby="mixes-title">
+        <div class="card-head">
+          <h2 id="mixes-title">Mixes</h2>
+          <p class="card-sub">For <strong>Download all ▸ Combine into one mix</strong> on an album or playlist. Songs are trimmed of silence, faded into each other, and saved as one file with a tracklist in its comments.</p>
+        </div>
+
+        <div class="preview">
+          <div class="preview-row">
+            <span class="preview-label" id="mixSummary"></span>
+            <span class="path" id="mixExample"></span>
+          </div>
+        </div>
+
+        <div class="setting" role="radiogroup" aria-labelledby="mixFormat-label">
+          <span class="text">
+            <span class="label" id="mixFormat-label">Format</span>
+          </span>
+          <span class="control segmented">
+            <label><input type="radio" name="mixFormat" value="mp3" /><span>MP3</span></label>
+            <label><input type="radio" name="mixFormat" value="m4a" /><span>M4A</span></label>
+          </span>
+        </div>
+
+        <div class="setting setting-range">
+          <span class="text">
+            <label class="label" for="mixCrossfade">Crossfade</label>
+            <span class="desc" id="mixCrossfade-desc">How long each song fades into the next. 0 plays them back to back.</span>
+          </span>
+          <span class="control range">
+            <input id="mixCrossfade" type="range" min="0" max="12" step="1" aria-describedby="mixCrossfade-desc" />
+            <output id="mixCrossfadeValue" for="mixCrossfade"></output>
+          </span>
+          <span class="fade" aria-hidden="true">
+            <svg viewBox="0 0 320 34" preserveAspectRatio="none">
+              <path id="fadeA" class="fade-a" d="M0 2H160L160 32H0Z" />
+              <path id="fadeB" class="fade-b" d="M160 32L160 2H320V32Z" />
+            </svg>
+            <span class="fade-legend"><span>Song 1</span><span>Song 2</span></span>
+          </span>
+        </div>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="mixNormalize-label">Even out the volume</span>
+            <span class="desc" id="mixNormalize-desc">Quiet and loud songs play at a similar level.</span>
+          </span>
+          <input id="mixNormalize" class="switch" type="checkbox" role="switch" aria-labelledby="mixNormalize-label" aria-describedby="mixNormalize-desc" />
+        </label>
+      </section>
+
+      <!-- 4. Sites ---------------------------------------------------------->
+      <section class="card" id="sites" aria-labelledby="sites-title">
+        <div class="card-head">
+          <h2 id="sites-title">Sites</h2>
+        </div>
+
+        <label class="setting">
+          <span class="text">
+            <span class="label" id="instagramApi-label">Instagram: get full quality</span>
+            <span class="desc" id="instagramApi-desc">Asks Instagram for the original photo and every video quality, using the account you’re already logged in with. Turn off to save only what the page shows (often smaller).</span>
+          </span>
+          <input id="instagramApi" class="switch" type="checkbox" role="switch" aria-labelledby="instagramApi-label" aria-describedby="instagramApi-desc" />
+        </label>
+
+        <h3>Supported now</h3>
+        <ul class="site-list">
+          <li><strong>YouTube</strong><span>Videos in MP4 up to 4K, MP3, M4A and thumbnails</span></li>
+          <li><strong>YouTube Music</strong><span>Songs, albums and playlists as tagged MP3 or M4A</span></li>
+          <li><strong>Spotify</strong><span>Songs, albums and playlists with tags and cover art, plus previews</span></li>
+          <li><strong>Apple Music</strong><span>Songs, albums and playlists with tags and cover art, plus previews</span></li>
+          <li><strong>Instagram</strong><span>Posts, carousels, reels, stories, highlights and profile pictures</span></li>
+          <li><strong>TikTok</strong><span>Videos in every quality, photo slideshows and sounds</span></li>
+          <li><strong>X</strong><span>Original photos, videos and GIFs in every bitrate</span></li>
+          <li><strong>Twitch</strong><span>Clips and past broadcasts</span></li>
+          <li><strong>Medal</strong><span>Clips</span></li>
+          <li><strong>Facebook</strong><span>Videos and reels</span></li>
+          <li><strong>Snapchat</strong><span>Public Stories and Spotlight</span></li>
+          <li><strong>Any site</strong><span>Regular images, videos and audio, and any video as an MP3</span></li>
+        </ul>
+        <p class="hint">Albums, playlists and carousels can be saved as separate files, as one ZIP, or (for songs) as one mix.</p>
+        <p class="hint">Big videos, ZIPs and mixes are put together on your computer, and a progress bubble shows how it’s going. Long 4K videos, Twitch broadcasts and long playlists can take a while.</p>
+      </section>
+
+      <!-- 5. How to use ----------------------------------------------------->
+      <section class="card" id="how" aria-labelledby="how-title">
+        <div class="card-head">
+          <h2 id="how-title">How to use it</h2>
+        </div>
+        <ol class="steps">
+          <li>On <b>YouTube</b>, click <b>Download</b> next to Like. On <b>YouTube Music</b>, <b>Spotify</b> and <b>Apple Music</b>, it’s next to the play buttons. On <b>Instagram</b> and <b>X</b>, use the download icon in the post’s buttons (next to Share). On <b>Twitch</b>, it’s in the player controls. On <b>TikTok</b>, <b>Facebook</b>, <b>Snapchat</b> and <b>Medal</b>, point at a video and a download button appears in its corner.</li>
+          <li>Got a link? Click the <b>Just download it</b> button in <span data-browser>Chrome</span>’s toolbar and paste it, or download from the tab you’re on. It can also save the page as a <b>PNG</b> or a <b>GIF</b>, and its gear opens this page.</li>
+          <li>Anywhere else, <b>right-click</b> a photo or video and pick <b>Just download media</b>. To save part of a page, pick <b>Just download web page</b>: as a <b>PNG</b> image, or as a <b>GIF</b> you record while you scroll. <b>Settings…</b> in the same menu opens this page.</li>
+          <li>Choose a quality. The best one is already selected, so <kbd>Enter</kbd> saves it.</li>
+          <li>On an album or playlist, <b>Download all</b> saves every song as its own file. Click the <b>▸</b> arrow next to it for <b>Download as ZIP</b> (one file with everything) or <b>Combine into one mix</b> (one long track that fades from song to song).</li>
+        </ol>
+      </section>
+
+      <footer class="page-foot">
+        <p>Free, and it all happens on your computer. Settings follow your <span data-browser>Chrome</span> profile when sync is on.</p>
+        <button id="reset" class="button" type="button">Reset to defaults</button>
+      </footer>
+    </main>
+
+    <dialog id="resetDialog" aria-labelledby="resetDialog-title" aria-describedby="resetDialog-desc">
+      <form method="dialog">
+        <h2 id="resetDialog-title">Reset all settings?</h2>
+        <p id="resetDialog-desc">Everything on this page goes back to how it was when you installed Just download it. Files you’ve already downloaded aren’t touched.</p>
+        <div class="dialog-actions">
+          <button class="button" value="cancel" autofocus>Cancel</button>
+          <button class="button danger" value="reset">Reset</button>
+        </div>
+      </form>
+    </dialog>
+
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <script src="../shared/util.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

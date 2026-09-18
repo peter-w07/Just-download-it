@@ -1,0 +1,15 @@
+node_modules/
+dist/
+test/e2e/.work/
+*.log
+
+# Signing key and packed builds: never publish these.
+*.pem
+*.crx
+*.zip
+*.xpi
+*.rar
+
+# Experiments and raw captures
+store/demo/
+store/shots/*.gif

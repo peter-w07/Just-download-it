@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Just download it · Download buttons for the sites you use</title>
+  <meta name="description" content="A free browser extension that puts a Download button on YouTube, Spotify, Instagram, TikTok, X, Twitch and more. Videos up to 4K, tagged MP3s, whole albums, and web pages as PNG or GIF. Everything runs in your browser.">
+  <meta name="author" content="Peter Wild">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0f1d" media="(prefers-color-scheme: dark)">
+
+  <!-- Sharing. Some sites only read absolute image URLs: once the site is live,
+       change og:image / twitter:image to the full address (https://…/assets/promo-marquee.png). -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Just download it">
+  <meta property="og:title" content="Just download it">
+  <meta property="og:description" content="Download videos, songs, photos and GIFs from the sites you use, in the quality you pick. Free, and it runs on your device.">
+  <meta property="og:image" content="assets/promo-marquee.png">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="560">
+  <meta property="og:image:alt" content="The Just download it icon beside a Download button with a quality menu open: 4K, 1080p, songs as MP3 or M4A, and the thumbnail.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Just download it">
+  <meta name="twitter:description" content="Download videos, songs, photos and GIFs from the sites you use, in the quality you pick. Free, and it runs on your device.">
+  <meta name="twitter:image" content="assets/promo-marquee.png">
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icon-128.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="assets/shot-youtube.webp" type="image/webp">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Just download it, back to top">
+        <img src="assets/icon.svg" alt="" width="30" height="30">
+        <span>Just download it</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#sites">Sites</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#install">Install</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero ------------------------------------------------------------ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <p class="pill"><span class="pill-dot" aria-hidden="true"></span>Free extension for Chrome<span class="pill-extra"> · Firefox coming soon</span></p>
+        <h1 id="hero-title">Just download it</h1>
+        <p class="hero-lede">Videos, songs, photos and GIFs from the sites you already use, in the quality you pick. Free, and it all happens in your browser.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#install">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
+            Install for Chrome
+          </a>
+          <a class="btn btn-ghost btn-lg" href="#features">See what it does</a>
+        </div>
+        <ul class="hero-points" aria-label="In short">
+          <li>No account</li>
+          <li>No ads</li>
+          <li>Nothing uploaded</li>
+          <li>Up to 4K</li>
+        </ul>
+
+        <figure class="hero-shot">
+          <div class="window window-hero">
+            <img src="assets/shot-youtube.webp" width="1036" height="464" fetchpriority="high"
+                 alt="A YouTube video page. Just download it’s Download button sits next to Like, and its quality menu is open, listing 2160p down to 144p, then MP3 and M4A.">
+          </div>
+          <figcaption>On YouTube, the Download button sits next to Like. Every quality, from 4K down to 144p, plus MP3 and M4A.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Sites ----------------------------------------------------------- -->
+    <section class="section section-alt section-sites" id="sites" aria-labelledby="sites-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Works on</p>
+          <h2 id="sites-title">The sites you already use</h2>
+          <p class="lede">A Download button on eleven sites, and a right-click menu for everything else.</p>
+        </div>
+        <ul class="site-grid">
+          <li class="site"><span class="site-name">YouTube</span><span class="site-what">Videos up to 4K, MP3, M4A and thumbnails</span></li>
+          <li class="site"><span class="site-name">YouTube Music</span><span class="site-what">Songs, albums and playlists as tagged MP3 or M4A</span></li>
+          <li class="site"><span class="site-name">Spotify</span><span class="site-what">Songs, albums and playlists, tagged, with cover art and previews</span></li>
+          <li class="site"><span class="site-name">Apple Music</span><span class="site-what">Songs, albums and playlists, tagged, with cover art up to 3000&nbsp;px</span></li>
+          <li class="site"><span class="site-name">Instagram</span><span class="site-what">Posts, carousels, reels, stories, highlights and profile pictures</span></li>
+          <li class="site"><span class="site-name">TikTok</span><span class="site-what">Videos in every quality, photo slideshows and sounds</span></li>
+          <li class="site"><span class="site-name">X</span><span class="site-what">Original photos, and videos and GIFs in every bitrate</span></li>
+          <li class="site"><span class="site-name">Twitch</span><span class="site-what">Clips, and past broadcasts in every quality or as audio</span></li>
+          <li class="site"><span class="site-name">Facebook</span><span class="site-what">Videos and reels in HD</span></li>
+          <li class="site"><span class="site-name">Snapchat</span><span class="site-what">Public Stories and Spotlight</span></li>
+          <li class="site"><span class="site-name">Medal</span><span class="site-what">Clips in every quality</span></li>
+          <li class="site site-any"><span class="site-name">Any other site</span><span class="site-what">Right-click images, video and audio files. Any video’s sound as MP3.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div id="features" class="features-anchor" aria-hidden="true"></div>
+
+    <!-- 1. Buttons built into sites ------------------------------------- -->
+    <section class="section" id="buttons" aria-labelledby="buttons-title">
+      <div class="container feature">
+        <div class="feature-copy">
+          <p class="eyebrow">Built in</p>
+          <h2 id="buttons-title">A Download button, right where you are</h2>
+          <p class="lede">No converter sites, no copying links around. The button sits with the site’s own buttons, and its menu is styled to match each site, light or dark.</p>
+          <dl class="where">
+            <div><dt>YouTube</dt><dd>Next to Like</dd></div>
+            <div><dt>YouTube Music, Spotify, Apple&nbsp;Music</dt><dd>Next to the play buttons, and in the player bar</dd></div>
+            <div><dt>Instagram</dt><dd>In the post’s action row, after Share</dd></div>
+            <div><dt>X</dt><dd>In the post’s action bar</dd></div>
+            <div><dt>Twitch</dt><dd>In the player controls</dd></div>
+            <div><dt>TikTok, Facebook, Snapchat, Medal</dt><dd>Point at a video and a button appears in its corner</dd></div>
+          </dl>
+        </div>
+        <div class="feature-media">
+          <div class="picker-stage">
+            <img class="picker-card" src="assets/picker-card.png" width="468" height="380" loading="lazy"
+                 alt="A blue Download button next to a site’s other buttons, with a menu titled Pick a quality: 4K MP4, 1080p MP4, song as MP3 tagged, song as M4A tagged, and the thumbnail as JPG.">
+          </div>
+          <ul class="facts" aria-label="The quality menu">
+            <li><strong>Every quality</strong> the site offers, up to 4K</li>
+            <li><strong>MP3 or M4A</strong> of any song, and an MP3 of any video’s sound</li>
+            <li><strong>The thumbnail or cover art</strong> as a picture</li>
+            <li>The best one is already picked: press <kbd>Enter</kbd></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Right-click -------------------------------------------------- -->
+    <section class="section section-alt" id="right-click" aria-labelledby="rightclick-title">
+      <div class="container feature feature-reverse">
+        <div class="feature-copy">
+          <p class="eyebrow">Anywhere else</p>
+          <h2 id="rightclick-title">Right-click, then just download it</h2>
+          <p class="lede">On any site, right-click an image, a video or an audio file and pick <b>Just download media</b>.</p>
+          <ul class="ticks">
+            <li>Finds the biggest version of an image, even behind a “click to enlarge” link, lazy loading or an invisible overlay</li>
+            <li>Saves direct video and audio files, background images and the page’s preview image</li>
+            <li>Right-click a YouTube link or thumbnail to download without opening it</li>
+            <li><b>Just download web page</b> saves the page itself, as a PNG or a GIF</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <div class="menu-stage" role="img" aria-label="Chrome’s right-click menu over a photo. The Just download it item is open, showing Just download media, Just download web page, and Settings.">
+            <div class="photo" aria-hidden="true">
+              <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#7fa6ff"/>
+                    <stop offset="1" stop-color="#dfe8ff"/>
+                  </linearGradient>
+                  <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#3a64e8"/>
+                    <stop offset="1" stop-color="#2447b8"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="260" fill="url(#sky)"/>
+                <circle cx="300" cy="78" r="30" fill="#fff" opacity=".85"/>
+                <path d="M0 190 90 110l60 50 70-80 90 90 90-60v150H0Z" fill="#5d86f5" opacity=".75"/>
+                <path d="M0 220 110 150l80 60 60-40 150 70v60H0Z" fill="url(#hill)"/>
+              </svg>
+            </div>
+            <div class="ctx-stack" aria-hidden="true">
+              <div class="ctx">
+                <span class="ctx-item">Open image in new tab</span>
+                <span class="ctx-item">Save image as…</span>
+                <span class="ctx-item">Copy image</span>
+                <span class="ctx-item">Copy image address</span>
+                <span class="ctx-sep"></span>
+                <span class="ctx-item is-open"><img src="assets/icon.svg" alt="" width="16" height="16">Just download it<span class="ctx-arrow">▸</span></span>
+              </div>
+              <div class="ctx ctx-sub">
+                <span class="ctx-item is-active">Just download media</span>
+                <span class="ctx-item">Just download web page<span class="ctx-arrow">▸</span></span>
+                <span class="ctx-sep"></span>
+                <span class="ctx-item">Settings…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Web page to PNG / GIF ---------------------------------------- -->
+    <section class="section" id="web-page" aria-labelledby="webpage-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Any web page</p>
+          <h2 id="webpage-title">Save a page as an image, or record it as a GIF</h2>
+          <p class="lede">Right-click and pick <b>Just download web page</b>, or use the buttons in the toolbar popup.</p>
+        </div>
+        <p class="menu-path">
+            <span class="menu-path-start">Right-click</span><span class="menu-path-sep menu-path-start" aria-hidden="true">›</span><span>Just download it</span><span class="menu-path-sep" aria-hidden="true">›</span><span>Just download web page</span><span class="menu-path-sep" aria-hidden="true">›</span><span class="menu-path-end">As an image (PNG)</span><span class="menu-path-or">or</span><span class="menu-path-end">As a GIF</span>
+          </p>
+        <div class="duo">
+          <figure class="duo-item">
+            <div class="window">
+              <img src="assets/shot-page-png.webp" width="636" height="586" loading="lazy"
+                   alt="A post on X outlined in blue by the element picker, with its size shown as 568 by 473. A bar at the top offers Image (PNG) or GIF, Visible area, Whole page and Cancel.">
+            </div>
+            <figcaption>
+              <h3>As an image (PNG)</h3>
+              <p>Point at the part you want. Scroll, or press <kbd>↑</kbd> <kbd>↓</kbd>, to pick a bigger or smaller part, then click. Parts taller than the screen are saved whole, or take the <b>Visible area</b> or the <b>Whole page</b>.</p>
+            </figcaption>
+          </figure>
+          <figure class="duo-item">
+            <div class="window">
+              <img src="assets/shot-gif.webp" width="696" height="532" loading="lazy"
+                   alt="A Reddit feed with the recorded area outlined in red, and a recording bar under it showing 0:06 of 1:00, Stop and save, and Cancel.">
+            </div>
+            <figcaption>
+              <h3>As a GIF</h3>
+              <p>Pick an area, then scroll or click around inside it while it records. Press <b>Stop&nbsp;&amp;&nbsp;save</b>. Good for a comment thread, a menu, or anything that moves. The GIF is made by your own browser.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Music with tags ---------------------------------------------- -->
+    <section class="section section-alt" id="music" aria-labelledby="music-title">
+      <div class="container feature">
+        <div class="feature-copy">
+          <p class="eyebrow">Songs</p>
+          <h2 id="music-title">Songs that show up properly in your music app</h2>
+          <p class="lede">From YouTube Music, Spotify and Apple Music, every song is saved as an MP3 or M4A with its title, artist, album and cover art written into the file.</p>
+          <ul class="ticks">
+            <li><b>MP3</b> plays everywhere; <b>M4A</b> keeps the audio exactly as it’s streamed, with no conversion</li>
+            <li>Spotify and Apple Music audio is copy-protected, so it’s never touched: the same recording is found on YouTube Music and saved from there</li>
+            <li>Point at MP3 or M4A in the menu to see which recording was found</li>
+            <li>Cover art and 30-second previews come straight from the source</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <div class="tagcard">
+            <div class="tagcard-head">
+              <div class="cover" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 18V6l11-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+              </div>
+              <div class="tagcard-title">
+                <p class="tagcard-file">The Weeknd - Blinding Lights.mp3</p>
+                <p class="tagcard-meta">MP3 · 256 kbps · tags and cover art</p>
+              </div>
+            </div>
+            <dl class="tags">
+              <div><dt>Title</dt><dd>Blinding Lights</dd></div>
+              <div><dt>Artist</dt><dd>The Weeknd</dd></div>
+              <div><dt>Album</dt><dd>After Hours</dd></div>
+              <div><dt>Cover art</dt><dd><span class="ok">Embedded</span></dd></div>
+            </dl>
+            <p class="path"><span class="dir">Downloads</span><span class="sep">/</span><span class="dir">Just Download It</span><span class="sep">/</span><span class="dir">Spotify</span><span class="sep">/</span><span class="file">The Weeknd - Blinding Lights.mp3</span></p>
+            <div class="source">
+              <span class="source-step">Picked on Spotify</span>
+              <span class="source-next"><span class="source-arrow" aria-hidden="true">→</span><span class="source-step">Found on YouTube Music</span></span>
+              <span class="source-next"><span class="source-arrow" aria-hidden="true">→</span><span class="source-step">Tagged on your computer</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Albums ------------------------------------------------------- -->
+    <section class="section" id="albums" aria-labelledby="albums-title">
+      <div class="container feature feature-reverse">
+        <div class="feature-copy">
+          <p class="eyebrow">Albums and playlists</p>
+          <h2 id="albums-title">A whole album in one click</h2>
+          <p class="lede">On an album or playlist, <b>Download all</b> saves every song. The <span class="glyph" aria-hidden="true">▸</span> arrow next to it has two more.</p>
+          <ol class="options">
+            <li>
+              <h3>Separate files</h3>
+              <p>Numbered 01, 02… in a folder named after the album.</p>
+              <p class="path path-sm"><span class="dir">Spotify</span><span class="sep">/</span><span class="dir">After Hours</span><span class="sep">/</span><span class="file">01 - The Weeknd - Alone Again.mp3</span></p>
+            </li>
+            <li>
+              <h3>One ZIP</h3>
+              <p>Everything in a single file.</p>
+            </li>
+            <li>
+              <h3>One mix</h3>
+              <p>One long track: silence trimmed, songs faded into each other, the volume evened out, and a tracklist in the file’s comments.</p>
+              <div class="fade" aria-hidden="true">
+                <svg viewBox="0 0 320 34" preserveAspectRatio="none">
+                  <path class="fade-a" d="M0 2H125L195 32H0Z"/>
+                  <path class="fade-b" d="M125 32L195 2H320V32Z"/>
+                </svg>
+                <span class="fade-legend"><span>Song 1</span><span>6 s crossfade</span><span>Song 2</span></span>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="feature-media">
+          <div class="window">
+            <img src="assets/shot-album.webp" width="696" height="532" loading="lazy"
+                 alt="A Spotify album page with the Download button next to Play. The menu shows the album’s songs as MP3 with tags and cover, and the Download all options: Download as ZIP, 13 songs as MP3 in one file, and Combine into one mix, MP3 with a 6 second crossfade and even volume.">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Popup -------------------------------------------------------- -->
+    <section class="section section-alt" id="popup" aria-labelledby="popup-title">
+      <div class="container feature">
+        <div class="feature-copy">
+          <p class="eyebrow">Toolbar</p>
+          <h2 id="popup-title">Got a link? Paste it.</h2>
+          <p class="lede">Click the <b>Just download it</b> button in Chrome’s toolbar and paste any link. It looks it up as soon as you paste, and lists everything you can save.</p>
+          <ul class="ticks">
+            <li>Works with links from any of the supported sites, or a direct link to a file</li>
+            <li><b>Download from this tab</b> uses the page you’re on</li>
+            <li>Save the page as an <b>Image (PNG)</b> or a <b>GIF</b> from here too</li>
+            <li>Progress shows on the toolbar icon, so you can close the popup and carry on</li>
+          </ul>
+        </div>
+        <div class="feature-media">
+          <div class="popup-stage">
+            <img class="popup-shot" src="assets/shot-popup.webp" width="426" height="656" loading="lazy"
+                 alt="The Just download it toolbar popup with a YouTube link pasted. It shows the video’s title and qualities from 2160p, marked Best, down to 240p, with buttons to save the web page as an Image (PNG) or a GIF.">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Private ------------------------------------------------------ -->
+    <section class="section section-private" id="private" aria-labelledby="private-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Private</p>
+          <h2 id="private-title">It all happens on your computer</h2>
+          <p class="lede">There is no Just download it server. Your browser does the work, and your files never go anywhere but your Downloads folder.</p>
+        </div>
+        <ul class="cards cards-4">
+          <li class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20"/></svg>
+            <h3>No server</h3>
+            <p>Video and sound are joined, MP3s encoded and GIFs recorded by your own browser.</p>
+          </li>
+          <li class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/><path d="M4 4l16 16"/></svg>
+            <h3>No account, no ads</h3>
+            <p>No sign-up, no paid tier, no analytics. It’s free.</p>
+          </li>
+          <li class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6.5v5c0 4.3-2.9 7.8-7 9.2-4.1-1.4-7-4.9-7-9.2v-5Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+            <h3>Only the site you’re on</h3>
+            <p>It talks to the site you’re downloading from, and to YouTube Music when it’s finding a song. Nothing else.</p>
+          </li>
+          <li class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4"/></svg>
+            <h3>No remote code</h3>
+            <p>Everything it runs is in the folder you install. Nothing is fetched and run later.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. Settings ----------------------------------------------------- -->
+    <section class="section section-alt" id="settings" aria-labelledby="settings-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Settings</p>
+          <h2 id="settings-title">Your folders, your file names</h2>
+          <p class="lede">Open the settings from the gear in the toolbar popup, or from the right-click menu. Changes save as you make them.</p>
+        </div>
+        <div class="settings-grid">
+          <section class="panel" aria-labelledby="set-downloads">
+            <h3 id="set-downloads">Downloads</h3>
+            <dl class="rows">
+              <div><dt>Folder inside Downloads</dt><dd><span class="val">Just Download It</span></dd></div>
+              <div><dt>A subfolder for each site</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+              <div><dt>Ask where to save each file</dt><dd><span class="tog"><span class="visually-hidden">Off</span></span></dd></div>
+              <div><dt>Skip the quality menu</dt><dd><span class="tog"><span class="visually-hidden">Off</span></span></dd></div>
+              <div><dt>Download buttons on sites</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+            </dl>
+          </section>
+          <section class="panel" aria-labelledby="set-songs">
+            <h3 id="set-songs">Songs</h3>
+            <dl class="rows">
+              <div><dt>File names</dt><dd><span class="seg"><span class="is-on">Artist - Title</span><span>Title - Artist</span><span>Title</span></span></dd></div>
+              <div><dt>Format</dt><dd><span class="seg"><span class="is-on">MP3</span><span>M4A</span></span></dd></div>
+              <div><dt>MP3 quality (kbps)</dt><dd><span class="seg"><span>128</span><span>192</span><span class="is-on">256</span><span>320</span></span></dd></div>
+              <div><dt>Tags and cover art</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+              <div><dt>Number the tracks</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+              <div><dt>A folder per album</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+            </dl>
+          </section>
+          <section class="panel" aria-labelledby="set-mixes">
+            <h3 id="set-mixes">Mixes</h3>
+            <dl class="rows">
+              <div><dt>Format</dt><dd><span class="seg"><span class="is-on">MP3</span><span>M4A</span></span></dd></div>
+              <div><dt>Crossfade</dt><dd><span class="val">0 to 12 s <span class="muted">(6 s)</span></span></dd></div>
+              <div><dt>Even out the volume</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+            </dl>
+            <h3 class="panel-sub">Sites</h3>
+            <dl class="rows">
+              <div><dt>Instagram: full quality</dt><dd><span class="tog is-on"><span class="visually-hidden">On</span></span></dd></div>
+            </dl>
+          </section>
+        </div>
+        <p class="note center">Shown with their defaults.</p>
+      </div>
+    </section>
+
+    <!-- How it works ---------------------------------------------------- -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">Three steps, and no surprises</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-num" aria-hidden="true">1</span>
+            <h3>Click Download</h3>
+            <p>Use the button on the site, right-click, or paste a link into the toolbar popup.</p>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">2</span>
+            <h3>Pick a quality</h3>
+            <p>The menu lists every version the site has. The best is already selected. Arrow keys move, <kbd>Enter</kbd> saves, <kbd>Esc</kbd> closes.</p>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true">3</span>
+            <h3>It lands in Downloads</h3>
+            <p>Through Chrome’s normal downloads. Big jobs show a progress bubble in the corner of the page.</p>
+          </li>
+        </ol>
+
+        <div class="explain">
+          <article class="explain-item">
+            <h3>What happens on your computer</h3>
+            <p>Plain files go straight to Chrome’s downloads. When a file needs work, such as joining a 4K video’s separate picture and sound, making an MP3, writing tags or recording a GIF, a hidden page inside the extension does it with the open-source <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> library, then hands the finished file to Chrome. Long 4K videos, Twitch broadcasts and long playlists can take a while.</p>
+          </article>
+          <article class="explain-item explain-key">
+            <h3>Spotify and Apple Music</h3>
+            <p>Their audio is DRM-protected, and the extension never touches it. It reads the song’s title, artist, album and length from their public pages, finds the same recording on YouTube Music, and saves that with the tags and cover art written in. Check the match shown in the menu: now and then it picks a different version.</p>
+          </article>
+          <article class="explain-item">
+            <h3>YouTube</h3>
+            <p>No cookies and no account are used. The extension asks YouTube’s player for a video’s streams the way a YouTube app does. YouTube changes what works every few months, so now and then it needs an update. Age-restricted, private and members-only videos aren’t supported.</p>
+          </article>
+          <article class="explain-item">
+            <h3>Instagram</h3>
+            <p>It asks Instagram for a post only when you click, one request at a time, using the account you’re already logged in with. If Instagram says to slow down, it waits and offers the version shown on the page instead. It’s built for saving things one at a time, not for bulk scraping.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Install --------------------------------------------------------- -->
+    <section class="section section-alt section-install" id="install" aria-labelledby="install-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Install</p>
+          <h2 id="install-title">Install it in about a minute</h2>
+          <p class="lede">Just download it isn’t on the Chrome Web Store yet, so you add it to Chrome yourself. Five short steps.</p>
+        </div>
+
+        <div class="install">
+          <div class="install-main">
+            <!-- The author puts the packed extension at site/downloads/just-download-it.zip -->
+            <a class="download-card" href="downloads/just-download-it.zip" download>
+              <span class="download-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
+              </span>
+              <span class="download-text">
+                <span class="download-title">Download the extension</span>
+                <span class="download-meta">just-download-it.zip · version 0.4.0 · Chrome 120 or newer</span>
+              </span>
+            </a>
+
+            <ol class="install-steps">
+              <li>
+                <h3>Unzip it</h3>
+                <p>Put the folder somewhere it can stay, like Documents. Chrome runs the extension from that folder, so don’t delete it.</p>
+              </li>
+              <li>
+                <h3>Open the extensions page</h3>
+                <p>Type this into Chrome’s address bar:</p>
+                <div class="copy-row">
+                  <code id="ext-url">chrome://extensions</code>
+                  <button class="btn btn-soft btn-xs" type="button" data-copy="chrome://extensions" aria-describedby="copy-status">
+                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+                    <span class="copy-label">Copy</span>
+                  </button>
+                  <span id="copy-status" class="visually-hidden" role="status" aria-live="polite"></span>
+                </div>
+              </li>
+              <li>
+                <h3>Turn on Developer mode</h3>
+                <p>It’s the switch in the top-right corner. Leave it on: Chrome turns off extensions loaded this way when it’s off.</p>
+              </li>
+              <li>
+                <h3>Click Load unpacked</h3>
+                <p>Pick the unzipped folder, the one with <code>manifest.json</code> inside.</p>
+              </li>
+              <li>
+                <h3>Open YouTube</h3>
+                <p>You’ll see the Download button next to Like. Pin <b>Just download it</b> from the puzzle-piece menu to keep the paste-a-link button handy.</p>
+              </li>
+            </ol>
+          </div>
+
+          <aside class="install-side" aria-label="About installing">
+            <div class="side-card">
+              <h3>Why not the Chrome Web Store?</h3>
+              <p>The Store doesn’t allow extensions that download from YouTube. Rather than drop YouTube, Just download it is shared here instead.</p>
+            </div>
+            <div class="side-card side-card-soon">
+              <p class="soon-badge">Coming soon</p>
+              <h3>Firefox</h3>
+              <p>A Firefox version is in progress. Want to hear when it’s ready? Email <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
+            </div>
+            <div class="side-card">
+              <h3>Updating later</h3>
+              <p>Unzip the new version over the old folder, then click the reload icon on the extension’s card in <code>chrome://extensions</code>. Your settings stay.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ ------------------------------------------------------------- -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container container-narrow">
+        <div class="section-head center">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title">Questions</h2>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Is it really free?</summary>
+            <div class="faq-body">
+              <p>Yes. There’s no paid tier, no account, no ads and no trial. It costs nothing to run because there’s no server: your browser does all the work.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Is it safe? Does it collect my data?</summary>
+            <div class="faq-body">
+              <p>It collects nothing. There’s no analytics, no account and no remote code, and nothing you download is sent to any server. Requests go only to the site you’re downloading from, plus YouTube Music when it’s finding a song.</p>
+              <p>It asks Chrome for access to all sites so the Download button and the right-click menu work wherever you are, and so it can fetch the file from the site’s servers. What you browse stays on your computer.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Why isn’t it on the Chrome Web Store?</summary>
+            <div class="faq-body">
+              <p>Google’s Chrome Web Store rules don’t allow extensions that download YouTube videos, and they’re enforced. Instead of removing YouTube, the extension is shared as a download you load yourself. See <a href="#install">Install</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Why do Spotify and Apple Music songs come from YouTube Music?</summary>
+            <div class="faq-body">
+              <p>Spotify and Apple Music protect their audio with DRM, and the extension never touches it. It reads the song’s title, artist, album and length from their public pages, finds the same recording on YouTube Music, and saves that as an MP3 or M4A with the tags and cover art filled in.</p>
+              <p>The menu shows which recording it found. Now and then it can pick a different version, like a live take, so it’s worth a glance.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Where do my files go?</summary>
+            <div class="faq-body">
+              <p>Into your normal Downloads folder, in a <b>Just Download It</b> folder with a subfolder for each site. For example:</p>
+              <p class="path"><span class="dir">Downloads</span><span class="sep">/</span><span class="dir">Just Download It</span><span class="sep">/</span><span class="dir">YouTube</span><span class="sep">/</span><span class="file">Me at the zoo [jNQXAC9IVRw] 1080p.mp4</span></p>
+              <p>You can rename the folder, turn off the per-site subfolders, or have Chrome ask where to save every file, in the settings.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do I update it?</summary>
+            <div class="faq-body">
+              <p>Download the new zip and unzip it over the old folder, replacing its files. Then open <code>chrome://extensions</code> and click the reload icon on the Just download it card. Open tabs pick up the new version by themselves, and your settings stay.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Is there anything it can’t download?</summary>
+            <div class="faq-body">
+              <p>Age-restricted, private and members-only YouTube videos aren’t supported, and copy-protected (DRM) audio and video is never touched. Sites also change how they work from time to time, so a button can stop working until the extension is updated.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA ----------------------------------------------------- -->
+    <section class="section cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card">
+          <img src="assets/icon.svg" alt="" width="64" height="64" loading="lazy">
+          <h2 id="cta-title">See something you want to keep? Just download it.</h2>
+          <p>Free, private, and it takes a minute to install.</p>
+          <a class="btn btn-light btn-lg" href="#install">Install for Chrome</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#top">
+          <img src="assets/icon.svg" alt="" width="28" height="28" loading="lazy">
+          <span>Just download it</span>
+        </a>
+        <p>Made by <a href="https://peterwild.pw">Peter Wild</a>. Questions and ideas are welcome at <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
+      </div>
+      <div class="footer-note">
+        <h2 class="footer-heading">Please download responsibly</h2>
+        <p>Save what you have the right to: your own uploads, things shared with you to keep, and content whose licence allows it. Creators are paid by views and streams, so keep supporting the ones you love.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-legal">
+      <p>YouTube, Spotify, Apple Music, Instagram, TikTok, X, Twitch, Facebook, Snapchat and Medal are trademarks of their owners. Just download it is an independent project, not affiliated with or endorsed by any of them. Video and audio processing by <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> (MPL-2.0).</p>
+      <p>© <span data-year>2026</span> Peter Wild</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
