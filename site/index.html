@@ -62,16 +62,28 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <p class="pill"><span class="pill-dot" aria-hidden="true"></span>Free extension for Chrome<span class="pill-extra"> · Firefox coming soon</span></p>
+        <p class="pill"><span class="pill-dot" aria-hidden="true"></span><span>Free for Chrome and Firefox<span class="pill-extra"> · Open source</span></span></p>
         <h1 id="hero-title">Just download it</h1>
         <p class="hero-lede">Videos, songs, photos and GIFs from the sites you already use, in the quality you pick. Free, and it all happens in your browser.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#install">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
-            Install for Chrome
+        <!-- Store buttons (here and in Install). Their links, and the "In review" state shown
+             until a listing is live, come from LINKS at the top of script.js. -->
+        <div class="hero-actions store-row">
+          <a class="store-btn is-review" data-store="chrome">
+            <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+            <span class="store-text">
+              <span class="store-title">Add to Chrome</span>
+              <span class="store-meta">In review, coming soon</span>
+            </span>
           </a>
-          <a class="btn btn-ghost btn-lg" href="#features">See what it does</a>
+          <a class="store-btn is-review" data-store="firefox">
+            <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+            <span class="store-text">
+              <span class="store-title">Add to Firefox</span>
+              <span class="store-meta">In review, coming soon</span>
+            </span>
+          </a>
         </div>
+        <p class="review-note hero-note" data-review-note><span data-review-text>Both store listings are in review right now.</span> Until then, you can <a href="#install-source">install it from source</a>.</p>
         <ul class="hero-points" aria-label="In short">
           <li>No account</li>
           <li>No ads</li>
@@ -162,7 +174,7 @@
           </ul>
         </div>
         <div class="feature-media">
-          <div class="menu-stage" role="img" aria-label="Chrome’s right-click menu over a photo. The Just download it item is open, showing Just download media, Just download web page, and Settings.">
+          <div class="menu-stage" role="img" aria-label="A browser’s right-click menu over a photo. The Just download it item is open, showing Just download media, Just download web page, and Settings.">
             <div class="photo" aria-hidden="true">
               <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice">
                 <defs>
@@ -325,7 +337,7 @@
         <div class="feature-copy">
           <p class="eyebrow">Toolbar</p>
           <h2 id="popup-title">Got a link? Paste it.</h2>
-          <p class="lede">Click the <b>Just download it</b> button in Chrome’s toolbar and paste any link. It looks it up as soon as you paste, and lists everything you can save.</p>
+          <p class="lede">Click the <b>Just download it</b> button in your browser’s toolbar and paste any link. It looks it up as soon as you paste, and lists everything you can save.</p>
           <ul class="ticks">
             <li>Works with links from any of the supported sites, or a direct link to a file</li>
             <li><b>Download from this tab</b> uses the page you’re on</li>
@@ -369,7 +381,7 @@
           <li class="card">
             <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4"/></svg>
             <h3>No remote code</h3>
-            <p>Everything it runs is in the folder you install. Nothing is fetched and run later.</p>
+            <p>Everything it runs ships inside the extension. Nothing is fetched and run later.</p>
           </li>
         </ul>
       </div>
@@ -443,14 +455,14 @@
           <li>
             <span class="step-num" aria-hidden="true">3</span>
             <h3>It lands in Downloads</h3>
-            <p>Through Chrome’s normal downloads. Big jobs show a progress bubble in the corner of the page.</p>
+            <p>Through your browser’s normal downloads. Big jobs show a progress bubble in the corner of the page.</p>
           </li>
         </ol>
 
         <div class="explain">
           <article class="explain-item">
             <h3>What happens on your computer</h3>
-            <p>Plain files go straight to Chrome’s downloads. When a file needs work, such as joining a 4K video’s separate picture and sound, making an MP3, writing tags or recording a GIF, a hidden page inside the extension does it with the open-source <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> library, then hands the finished file to Chrome. Long 4K videos, Twitch broadcasts and long playlists can take a while.</p>
+            <p>Plain files go straight to your browser’s downloads. When a file needs work, such as joining a 4K video’s separate picture and sound, making an MP3, writing tags or recording a GIF, a hidden page inside the extension does it with the open-source <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> library, then hands the finished file to the browser. Long 4K videos, Twitch broadcasts and long playlists can take a while.</p>
           </article>
           <article class="explain-item explain-key">
             <h3>Spotify and Apple Music</h3>
@@ -473,70 +485,130 @@
       <div class="container">
         <div class="section-head center">
           <p class="eyebrow">Install</p>
-          <h2 id="install-title">Install it in about a minute</h2>
-          <p class="lede">Just download it isn’t on the Chrome Web Store yet, so you add it to Chrome yourself. Five short steps.</p>
+          <h2 id="install-title">Add it to your browser</h2>
+          <p class="lede">Get it from the Chrome Web Store or Firefox Add-ons. It’s free, and it keeps itself up to date.</p>
         </div>
 
         <div class="install">
           <div class="install-main">
-            <!-- The author puts the packed extension at site/downloads/just-download-it.zip -->
-            <a class="download-card" href="downloads/just-download-it.zip" download>
-              <span class="download-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
-              </span>
-              <span class="download-text">
-                <span class="download-title">Download the extension</span>
-                <span class="download-meta">just-download-it.zip · version 0.4.0 · Chrome 120 or newer</span>
-              </span>
-            </a>
+            <div class="store-row store-row-card">
+              <a class="store-btn store-btn-card is-review" data-store="chrome">
+                <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+                <span class="store-text">
+                  <span class="store-title">Add to Chrome</span>
+                  <span class="store-meta">In review, coming soon</span>
+                </span>
+              </a>
+              <a class="store-btn store-btn-card is-review" data-store="firefox">
+                <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+                <span class="store-text">
+                  <span class="store-title">Add to Firefox</span>
+                  <span class="store-meta">In review, coming soon</span>
+                </span>
+              </a>
+            </div>
+            <p class="install-meta">Version 0.4.0 · Chrome 120+ · Firefox 140+</p>
+            <p class="review-note install-note" data-review-note><span data-review-text>Both store listings are in review right now.</span> Until then, you can <a href="#install-source">install it from source</a>.</p>
 
             <ol class="install-steps">
               <li>
-                <h3>Unzip it</h3>
-                <p>Put the folder somewhere it can stay, like Documents. Chrome runs the extension from that folder, so don’t delete it.</p>
-              </li>
-              <li>
-                <h3>Open the extensions page</h3>
-                <p>Type this into Chrome’s address bar:</p>
-                <div class="copy-row">
-                  <code id="ext-url">chrome://extensions</code>
-                  <button class="btn btn-soft btn-xs" type="button" data-copy="chrome://extensions" aria-describedby="copy-status">
-                    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
-                    <span class="copy-label">Copy</span>
-                  </button>
-                  <span id="copy-status" class="visually-hidden" role="status" aria-live="polite"></span>
-                </div>
-              </li>
-              <li>
-                <h3>Turn on Developer mode</h3>
-                <p>It’s the switch in the top-right corner. Leave it on: Chrome turns off extensions loaded this way when it’s off.</p>
-              </li>
-              <li>
-                <h3>Click Load unpacked</h3>
-                <p>Pick the unzipped folder, the one with <code>manifest.json</code> inside.</p>
+                <h3>Add it</h3>
+                <p>Click <b>Add to Chrome</b> or <b>Add to Firefox</b>, then confirm in the box your browser shows.</p>
               </li>
               <li>
                 <h3>Open YouTube</h3>
-                <p>You’ll see the Download button next to Like. Pin <b>Just download it</b> from the puzzle-piece menu to keep the paste-a-link button handy.</p>
+                <p>You’ll see the Download button next to Like.</p>
+              </li>
+              <li>
+                <h3>Pin it</h3>
+                <p>Pin <b>Just download it</b> from the puzzle-piece menu in the toolbar to keep the paste-a-link button handy.</p>
               </li>
             </ol>
           </div>
 
           <aside class="install-side" aria-label="About installing">
             <div class="side-card">
-              <h3>Why not the Chrome Web Store?</h3>
-              <p>The Store doesn’t allow extensions that download from YouTube. Rather than drop YouTube, Just download it is shared here instead.</p>
+              <h3>It updates by itself</h3>
+              <p>Installed from the Chrome Web Store or Firefox Add-ons, new versions arrive on their own. Your settings stay.</p>
             </div>
-            <div class="side-card side-card-soon">
-              <p class="soon-badge">Coming soon</p>
-              <h3>Firefox</h3>
-              <p>A Firefox version is in progress. Want to hear when it’s ready? Email <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
-            </div>
-            <div class="side-card">
-              <h3>Updating later</h3>
-              <p>Unzip the new version over the old folder, then click the reload icon on the extension’s card in <code>chrome://extensions</code>. Your settings stay.</p>
+            <div class="side-card side-card-accent">
+              <p class="side-badge">MIT licensed</p>
+              <h3>Open source</h3>
+              <p>All of the code is on GitHub. Read what it does, build it yourself, or suggest a fix.</p>
+              <p><a href="https://github.com/peter-w07/Just-download-it" data-link="github">See the code on GitHub</a></p>
             </div>
           </aside>
+
+          <details class="source-route" id="install-source">
+            <summary>
+              <span class="source-title">Install from source</span>
+              <span class="source-sub">For developers: load it straight from the code on GitHub</span>
+            </summary>
+            <div class="source-body">
+              <div class="source-get">
+                <p>The code is on GitHub. Click <b>Code</b>, then <b>Download ZIP</b>, and unzip it somewhere it can stay, like Documents. Or clone it with git.</p>
+                <a class="btn btn-soft btn-sm" href="https://github.com/peter-w07/Just-download-it" data-link="github">
+                  Open on GitHub
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+
+              <div class="source-cols">
+                <section class="source-col" aria-labelledby="source-chrome">
+                  <h3 id="source-chrome">Chrome</h3>
+                  <ol class="install-steps install-steps-sm">
+                    <li>
+                      <h4>Open the extensions page</h4>
+                      <p>Type this into Chrome’s address bar:</p>
+                      <div class="copy-row">
+                        <code>chrome://extensions</code>
+                        <button class="btn btn-soft btn-xs" type="button" data-copy="chrome://extensions">
+                          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+                          <span class="copy-label">Copy</span>
+                        </button>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>Turn on Developer mode</h4>
+                      <p>It’s the switch in the top-right corner. Leave it on: Chrome turns off extensions loaded this way when it’s off.</p>
+                    </li>
+                    <li>
+                      <h4>Click Load unpacked</h4>
+                      <p>Pick the <code>extension</code> folder inside the project, the one with <code>manifest.json</code> in it, not the project folder itself.</p>
+                    </li>
+                  </ol>
+                  <p class="source-foot">To update, replace the files with the new version, then click the reload icon on the extension’s card.</p>
+                </section>
+
+                <section class="source-col" aria-labelledby="source-firefox">
+                  <h3 id="source-firefox">Firefox</h3>
+                  <ol class="install-steps install-steps-sm">
+                    <li>
+                      <h4>Build the Firefox version</h4>
+                      <p>With Node.js 20 or newer, run <code>npm install</code> and then <code>npm run build:firefox</code> in the project folder. It lands in <code>dist/firefox/</code>.</p>
+                    </li>
+                    <li>
+                      <h4>Open the debugging page</h4>
+                      <p>Type this into Firefox’s address bar:</p>
+                      <div class="copy-row">
+                        <code>about:debugging#/runtime/this-firefox</code>
+                        <button class="btn btn-soft btn-xs" type="button" data-copy="about:debugging#/runtime/this-firefox">
+                          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+                          <span class="copy-label">Copy</span>
+                        </button>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>Click Load Temporary Add-on…</h4>
+                      <p>Pick <code>dist/firefox/manifest.json</code>. If Firefox asks, let it access all websites: it needs that to add its buttons and fetch the files.</p>
+                    </li>
+                  </ol>
+                  <p class="source-foot">Firefox removes temporary add-ons when it restarts, so this is for trying it out. Firefox 140 or newer.</p>
+                </section>
+              </div>
+              <span id="copy-status" class="visually-hidden" role="status" aria-live="polite"></span>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -559,13 +631,14 @@
             <summary>Is it safe? Does it collect my data?</summary>
             <div class="faq-body">
               <p>It collects nothing. There’s no analytics, no account and no remote code, and nothing you download is sent to any server. Requests go only to the site you’re downloading from, plus YouTube Music when it’s finding a song.</p>
-              <p>It asks Chrome for access to all sites so the Download button and the right-click menu work wherever you are, and so it can fetch the file from the site’s servers. What you browse stays on your computer.</p>
+              <p>It asks your browser for access to all sites so the Download button and the right-click menu work wherever you are, and so it can fetch the file from the site’s servers. What you browse stays on your computer.</p>
             </div>
           </details>
           <details>
-            <summary>Why isn’t it on the Chrome Web Store?</summary>
+            <summary>Is it open source?</summary>
             <div class="faq-body">
-              <p>Google’s Chrome Web Store rules don’t allow extensions that download YouTube videos, and they’re enforced. Instead of removing YouTube, the extension is shared as a download you load yourself. See <a href="#install">Install</a>.</p>
+              <p>Yes. All of it is on <a href="https://github.com/peter-w07/Just-download-it" data-link="github">GitHub</a> under the MIT license, so you can read exactly what it does, build it yourself, or suggest a fix.</p>
+              <p>The code is plain JavaScript, HTML and CSS, not minified. The two bundled libraries, for video and GIFs, can be rebuilt from their sources with one command.</p>
             </div>
           </details>
           <details>
@@ -580,13 +653,14 @@
             <div class="faq-body">
               <p>Into your normal Downloads folder, in a <b>Just Download It</b> folder with a subfolder for each site. For example:</p>
               <p class="path"><span class="dir">Downloads</span><span class="sep">/</span><span class="dir">Just Download It</span><span class="sep">/</span><span class="dir">YouTube</span><span class="sep">/</span><span class="file">Me at the zoo [jNQXAC9IVRw] 1080p.mp4</span></p>
-              <p>You can rename the folder, turn off the per-site subfolders, or have Chrome ask where to save every file, in the settings.</p>
+              <p>You can rename the folder, turn off the per-site subfolders, or have your browser ask where to save every file, in the settings.</p>
             </div>
           </details>
           <details>
             <summary>How do I update it?</summary>
             <div class="faq-body">
-              <p>Download the new zip and unzip it over the old folder, replacing its files. Then open <code>chrome://extensions</code> and click the reload icon on the Just download it card. Open tabs pick up the new version by themselves, and your settings stay.</p>
+              <p>You don’t need to. Installed from the Chrome Web Store or Firefox Add-ons, it updates by itself, and your settings stay.</p>
+              <p>If you installed it from source, replace the files with the new version from GitHub, then click the reload icon on its card in <code>chrome://extensions</code>. In Firefox, build it again and click <b>Reload</b> in <code>about:debugging</code>.</p>
             </div>
           </details>
           <details>
@@ -605,8 +679,8 @@
         <div class="cta-card">
           <img src="assets/icon.svg" alt="" width="64" height="64" loading="lazy">
           <h2 id="cta-title">See something you want to keep? Just download it.</h2>
-          <p>Free, private, and it takes a minute to install.</p>
-          <a class="btn btn-light btn-lg" href="#install">Install for Chrome</a>
+          <p>Free, private and open source. For Chrome and Firefox.</p>
+          <a class="btn btn-light btn-lg" href="#install">Get it for your browser</a>
         </div>
       </div>
     </section>
@@ -620,6 +694,10 @@
           <span>Just download it</span>
         </a>
         <p>Made by <a href="https://peterwild.pw">Peter Wild</a>. Questions and ideas are welcome at <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/peter-w07/Just-download-it" data-link="github">Source code on GitHub</a></li>
+          <li><a href="https://github.com/peter-w07/Just-download-it/blob/main/LICENSE" data-link="license">MIT licensed</a></li>
+        </ul>
       </div>
       <div class="footer-note">
         <h2 class="footer-heading">Please download responsibly</h2>
