@@ -10,20 +10,22 @@
   <meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0a0f1d" media="(prefers-color-scheme: dark)">
 
-  <!-- Sharing. Some sites only read absolute image URLs: once the site is live,
-       change og:image / twitter:image to the full address (https://…/assets/promo-marquee.png). -->
+  <link rel="canonical" href="https://justdownloadit.peterwild.pw/">
+
+  <!-- Sharing -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://justdownloadit.peterwild.pw/">
   <meta property="og:site_name" content="Just download it">
   <meta property="og:title" content="Just download it">
   <meta property="og:description" content="Download videos, songs, photos and GIFs from the sites you use, in the quality you pick. Free, and it runs on your device.">
-  <meta property="og:image" content="assets/promo-marquee.png">
+  <meta property="og:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
   <meta property="og:image:width" content="1400">
   <meta property="og:image:height" content="560">
   <meta property="og:image:alt" content="The Just download it icon beside a Download button with a quality menu open: 4K, 1080p, songs as MP3 or M4A, and the thumbnail.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Just download it">
   <meta name="twitter:description" content="Download videos, songs, photos and GIFs from the sites you use, in the quality you pick. Free, and it runs on your device.">
-  <meta name="twitter:image" content="assets/promo-marquee.png">
+  <meta name="twitter:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
 
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
@@ -376,7 +378,7 @@
           <li class="card">
             <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6.5v5c0 4.3-2.9 7.8-7 9.2-4.1-1.4-7-4.9-7-9.2v-5Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
             <h3>Only the site you’re on</h3>
-            <p>It talks to the site you’re downloading from, and to YouTube Music when it’s finding a song. Nothing else.</p>
+            <p>It talks to the site you’re downloading from, and to YouTube Music and Apple’s iTunes search when it’s finding a song and its tags. Nothing else.</p>
           </li>
           <li class="card">
             <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4"/></svg>
@@ -630,7 +632,7 @@
           <details>
             <summary>Is it safe? Does it collect my data?</summary>
             <div class="faq-body">
-              <p>It collects nothing. There’s no analytics, no account and no remote code, and nothing you download is sent to any server. Requests go only to the site you’re downloading from, plus YouTube Music when it’s finding a song.</p>
+              <p>It collects nothing. There’s no analytics, no account and no remote code, and nothing you download is sent to any server. Requests go only to the site you’re downloading from, plus YouTube Music and Apple’s iTunes search when it’s matching a song and filling in its tags. The <a href="privacy.html">privacy policy</a> has the details.</p>
               <p>It asks your browser for access to all sites so the Download button and the right-click menu work wherever you are, and so it can fetch the file from the site’s servers. What you browse stays on your computer.</p>
             </div>
           </details>
@@ -697,6 +699,7 @@
         <ul class="footer-links">
           <li><a href="https://github.com/peter-w07/Just-download-it" data-link="github">Source code on GitHub</a></li>
           <li><a href="https://github.com/peter-w07/Just-download-it/blob/main/LICENSE" data-link="license">MIT licensed</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
         </ul>
       </div>
       <div class="footer-note">

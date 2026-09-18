@@ -1493,6 +1493,60 @@ a.store-btn-card[href]:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inse
 .cta-card p { margin-top: 12px; color: rgba(255, 255, 255, .92); font-size: 1.1rem; }
 .cta-card .btn { margin-top: 28px; }
 
+/* Plain pages (privacy policy) ------------------------------------------ */
+
+.page-hero {
+  position: relative;
+  padding: clamp(40px, 6vw, 80px) 0 clamp(32px, 4vw, 48px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.page-hero .lede { max-width: 40rem; }
+.page-meta { margin-top: 16px; color: var(--muted); font-size: .9rem; font-weight: 600; }
+
+.prose { padding-bottom: clamp(64px, 9vw, 112px); }
+.prose > section + section {
+  margin-top: clamp(36px, 5vw, 48px);
+  padding-top: clamp(36px, 5vw, 48px);
+  border-top: 1px solid var(--line);
+}
+.prose h2 { font-size: clamp(1.4rem, 2.6vw, 1.75rem); letter-spacing: -0.02em; }
+.prose p { color: var(--text-2); }
+.prose h2 + p, .prose p + p, .prose p + ul, .prose ul + p { margin-top: 14px; }
+.prose h2 + ul { margin-top: 18px; }
+
+.policy-summary {
+  padding: clamp(20px, 3.4vw, 32px);
+  border: 1px solid var(--accent-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(70% 90% at 100% 0%, var(--accent-soft), transparent 70%),
+    var(--surface);
+  box-shadow: var(--shadow-md);
+}
+.policy-summary .ticks { margin-top: 18px; }
+
+.bullets { display: grid; gap: 12px; }
+.bullets li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--text-2);
+}
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .62em;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--brand-grad);
+}
+
 /* Footer ---------------------------------------------------------------- */
 
 .site-footer {
@@ -1518,6 +1572,7 @@ a.store-btn-card[href]:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inse
 }
 .footer-links a { color: var(--text-2); }
 .footer-links a:hover { color: var(--accent); }
+.footer-links a[aria-current="page"] { color: var(--text); text-decoration: none; }
 .footer-heading { font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; color: var(--text); }
 .footer-note p { margin-top: 8px; max-width: 34rem; }
 .footer-legal {
