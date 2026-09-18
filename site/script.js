@@ -24,6 +24,27 @@
     GITHUB_URL: 'https://github.com/peter-w07/Just-download-it',
   };
 
+  // ---------------------------------------------------------------------------
+  // The video: swap the poster for the YouTube player on the first press, so
+  // nothing from YouTube loads until someone wants to watch. Without JavaScript
+  // the poster is a plain link to the video on YouTube.
+  // ---------------------------------------------------------------------------
+  for (const box of document.querySelectorAll('[data-youtube]')) {
+    const poster = box.querySelector('.video-poster');
+    if (!poster) continue;
+    poster.addEventListener('click', (event) => {
+      event.preventDefault();
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(box.dataset.youtube)}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      frame.title = box.dataset.title || 'Video';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      poster.replaceWith(frame);
+      frame.focus();
+    });
+  }
+
   const stores = {
     chrome: {
       url: LINKS.CHROME_STORE_URL,

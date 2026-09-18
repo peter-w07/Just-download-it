@@ -64,6 +64,16 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-inner">
+        <!-- The video. A local poster stands in until someone presses play; only then does
+             the YouTube player load (script.js), from youtube-nocookie.com. -->
+        <div class="hero-video" data-youtube="rhZnmCfau4Q" data-title="Just download it: the Chrome extension, explained by Peter Wild">
+          <a class="video-poster" href="https://youtu.be/rhZnmCfau4Q" aria-label="Play the video: Just download it, explained by its creator (1 minute 54 seconds)">
+            <img src="assets/video-poster.webp" width="1280" height="720" alt="" fetchpriority="high">
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+            <span class="video-meta" aria-hidden="true">Watch · 1:54</span>
+          </a>
+        </div>
+
         <p class="pill"><span class="pill-dot" aria-hidden="true"></span><span>Free for Chrome and Firefox<span class="pill-extra"> · Open source</span></span></p>
         <h1 id="hero-title">Just download it</h1>
         <p class="hero-lede">Videos, songs, photos and GIFs from the sites you already use, in the quality you pick. Free, and it all happens in your browser.</p>
