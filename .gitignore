@@ -13,3 +13,6 @@ test/e2e/.work/
 # Experiments and raw captures
 store/demo/
 store/shots/*.gif
+
+# Upload kits (copies of dist/ and store/assets/)
+release/
