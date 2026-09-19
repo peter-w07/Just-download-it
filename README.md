@@ -72,11 +72,10 @@ Settings (the gear in the toolbar popup): the download folder, a subfolder per s
 
 `site/` is the homepage at https://justdownloadit.peterwild.pw: plain HTML, CSS and JavaScript, no build step and no server, so any static host serves it (it's set up for Cloudflare Pages).
 
-- **Paste a link** (`site/download.html`) hands the link to the extension, which opens its popup with the link looked up. The extension's `content/site-bridge.js` runs only on that domain; all the page can ask is for the popup to open with a link, and nothing downloads until you pick something.
+- **Paste a link** (`site/download.html`) hands the link to the extension, which opens its popup with it looked up. The extension's `content/site-bridge.js` runs only on that domain; all the page can ask is for the popup to open with a link, and nothing downloads until you pick something.
+- **Without the extension, the page downloads what a website is allowed to** (`site/web-download.js`), in the browser: X posts (every video quality, GIFs, photos at original size, through [fxtwitter](https://github.com/FixTweet/FxTwitter)), Twitch clips in every quality, Apple Music cover art and previews, YouTube, TikTok and Spotify thumbnails and covers, and direct file links. A browser only lets one site read another when that site allows it (CORS), and YouTube, TikTok, Instagram, Facebook, Snapchat, Medal and Spotify don't, so their videos and songs need the extension: the page says so and links to it. `node test/live/website.mjs` checks all of this against the real services.
 - **The address-bar shortcut:** put `justdownloadit.peterwild.pw/` in front of any link. There's no page at that address, so the host serves `site/404.html`, which passes the link on to the Paste a link page.
 - **Screenshot or GIF any tab** (`site/capture.html`) needs no extension: the browser's own screen sharing shows the tab you pick on the page, you drag a box, and it's saved as a PNG or recorded into a GIF (gifenc, in `site/vendor/`). It works in desktop browsers; phones don't let websites capture other tabs.
-
-Without the extension, the website can't download videos or songs itself: browsers don't let one site read another's pages, which is what the extension's permissions are for.
 
 ## Your accounts
 
@@ -133,7 +132,7 @@ test/
   e2e/                           Puppeteer + Chrome for Testing against fake YouTube/Instagram/CDN/generic sites
                                  and the website (site/)
 site/                            the homepage, Paste a link, and Screenshot or GIF any tab
-  live/                          the real youtube.com (needs internet)
+  live/                          the real youtube.com and the website (need internet)
 scripts/                         icon rendering, vendoring Mediabunny
 ```
 
