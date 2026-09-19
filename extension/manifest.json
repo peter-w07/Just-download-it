@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Just download it",
   "short_name": "Just download it",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Download videos, songs, photos and GIFs from YouTube, YouTube Music, Spotify, Apple Music, Instagram, TikTok, X, Twitch, Medal and any site. Free, and it runs on your device.",
   "minimum_chrome_version": "120",
   "icons": {
@@ -44,6 +44,15 @@
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   },
   "content_scripts": [
+    {
+      "matches": [
+        "https://justdownloadit.peterwild.pw/*"
+      ],
+      "js": [
+        "content/site-bridge.js"
+      ],
+      "run_at": "document_start"
+    },
     {
       "matches": [
         "https://www.facebook.com/*",

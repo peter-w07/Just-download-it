@@ -68,6 +68,16 @@ In the picker, arrow keys move, <kbd>Enter</kbd> saves, <kbd>Esc</kbd> closes. F
 
 Settings (the gear in the toolbar popup): the download folder, a subfolder per site, asking where to save each file, skipping the picker (save the best quality right away), showing the page buttons, and whether to ask Instagram for full quality.
 
+## The website
+
+`site/` is the homepage at https://justdownloadit.peterwild.pw: plain HTML, CSS and JavaScript, no build step and no server, so any static host serves it (it's set up for Cloudflare Pages).
+
+- **Paste a link** (`site/download.html`) hands the link to the extension, which opens its popup with the link looked up. The extension's `content/site-bridge.js` runs only on that domain; all the page can ask is for the popup to open with a link, and nothing downloads until you pick something.
+- **The address-bar shortcut:** put `justdownloadit.peterwild.pw/` in front of any link. There's no page at that address, so the host serves `site/404.html`, which passes the link on to the Paste a link page.
+- **Screenshot or GIF any tab** (`site/capture.html`) needs no extension: the browser's own screen sharing shows the tab you pick on the page, you drag a box, and it's saved as a PNG or recorded into a GIF (gifenc, in `site/vendor/`). It works in desktop browsers; phones don't let websites capture other tabs.
+
+Without the extension, the website can't download videos or songs itself: browsers don't let one site read another's pages, which is what the extension's permissions are for.
+
 ## Your accounts
 
 **Instagram:** the extension asks Instagram for a post's media only when you click, one request at a time, and caches answers for 20 minutes. If Instagram says to slow down, it stops asking for 10 minutes and offers the version shown on the page instead. It's built for saving things one at a time, not bulk scraping, which is what gets accounts flagged.
@@ -111,6 +121,7 @@ extension/
   content/core.js                right-click tracking, handler orchestration, progress
   content/picker.js              the quality picker and toasts
   content/capture.js             the element picker and recording controls
+  content/site-bridge.js         on the extension's website only: opens the popup with a link from it
   content/buttons.js             Download buttons on supported sites
   content/dom.js                 hit-testing helpers
   content/handlers/*.js          one per site, plus generic.js for everything else
@@ -120,6 +131,8 @@ extension/
 test/
   unit/                          node --test
   e2e/                           Puppeteer + Chrome for Testing against fake YouTube/Instagram/CDN/generic sites
+                                 and the website (site/)
+site/                            the homepage, Paste a link, and Screenshot or GIF any tab
   live/                          the real youtube.com (needs internet)
 scripts/                         icon rendering, vendoring Mediabunny
 ```

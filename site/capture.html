@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screenshot or GIF any tab · Just download it</title>
+  <meta name="description" content="Share a tab with this page, drag a box around the part you want, and save it as a PNG or a scrolling GIF. Free, no install, and nothing is uploaded.">
+  <meta name="author" content="Peter Wild">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0f1d" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://justdownloadit.peterwild.pw/capture.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://justdownloadit.peterwild.pw/capture.html">
+  <meta property="og:site_name" content="Just download it">
+  <meta property="og:title" content="Screenshot or GIF any tab · Just download it">
+  <meta property="og:description" content="Share a tab, drag a box, save a PNG or a scrolling GIF. Free, no install, and nothing is uploaded.">
+  <meta property="og:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="560">
+  <meta property="og:image:alt" content="The Just download it icon beside a Download button with a quality menu open: 4K, 1080p, songs as MP3 or M4A, and the thumbnail.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icon-128.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script src="capture.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Just download it, home">
+        <img src="assets/icon.svg" alt="" width="30" height="30">
+        <span>Just download it</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="./#sites">Sites</a></li>
+          <li><a href="./#features">Features</a></li>
+          <li><a href="./#how">How it works</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+          <li><a href="download.html">Paste a link</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="./#install">Install</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero tool-hero" aria-labelledby="page-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <p class="eyebrow">Screenshot or GIF</p>
+        <h1 id="page-title">Save any part of any tab</h1>
+        <p class="lede">Share a tab with this page, drag a box around the post, comment thread or chart you want, and save it as a PNG, or record a GIF while you scroll. No install, and nothing is uploaded: it all happens in your browser.</p>
+      </div>
+    </section>
+
+    <div class="container tool-body cap">
+      <!-- Before sharing -->
+      <section class="tool-card cap-start" id="cap-start" aria-labelledby="cap-start-title">
+        <h2 class="visually-hidden" id="cap-start-title">Choose a tab</h2>
+        <ol class="cap-steps" id="cap-steps">
+          <li id="cap-step-open" hidden>
+            <span class="step-num" aria-hidden="true">1</span>
+            <div>
+              <h3 class="tool-subtitle">Open the page</h3>
+              <p class="tool-text" id="cap-open-host"></p>
+            </div>
+            <a class="btn btn-ghost btn-md" id="cap-open" target="_blank" rel="noopener noreferrer">Open it</a>
+          </li>
+          <li>
+            <span class="step-num" aria-hidden="true" id="cap-share-num">1</span>
+            <div>
+              <h3 class="tool-subtitle">Share its tab with this page</h3>
+              <p class="tool-text">Your browser asks which tab to show. Pick the one you want to save from; only this page sees it.</p>
+            </div>
+            <button class="btn btn-primary btn-md" type="button" id="cap-share">Choose a tab</button>
+          </li>
+        </ol>
+        <p class="tool-small" id="cap-unsupported" hidden>This needs a computer. Phone browsers don’t let websites see other tabs or apps. On a phone, use your phone’s own screenshot and screen recording.</p>
+      </section>
+
+      <p class="tool-error" id="cap-error" role="alert" hidden></p>
+
+      <!-- Sharing: the live tab, the box, and the buttons -->
+      <section class="cap-live" id="cap-live" aria-label="The shared tab" hidden>
+        <div class="cap-bar" id="cap-tools">
+          <p class="cap-hint" id="cap-hint">Drag a box around what you want. No box saves the whole tab.</p>
+          <div class="cap-buttons">
+            <button class="btn btn-ghost btn-sm" type="button" id="cap-scroll" hidden title="Scroll the shared tab with your mouse wheel over the picture">Scroll from here</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="cap-all" hidden>Whole tab</button>
+            <button class="btn btn-primary btn-sm" type="button" id="cap-png">Save PNG</button>
+            <button class="btn btn-primary btn-sm" type="button" id="cap-gif">Record GIF</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="cap-stop">Stop sharing</button>
+          </div>
+        </div>
+        <div class="cap-bar cap-recbar" id="cap-recbar" hidden>
+          <p class="cap-hint"><span class="rec-dot" aria-hidden="true"></span> Recording <span class="rec-time" id="cap-time">0:00</span> <span class="muted">/ 1:00</span> · <span id="cap-rec-hint">scroll the shared tab now</span></p>
+          <div class="cap-buttons">
+            <button class="btn btn-primary btn-sm" type="button" id="cap-rec-stop">Stop &amp; save</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="cap-rec-cancel">Cancel</button>
+          </div>
+        </div>
+        <div class="cap-stage">
+          <div class="cap-frame" id="cap-frame">
+            <video id="cap-video" autoplay muted playsinline></video>
+            <div class="cap-overlay" id="cap-overlay">
+              <div class="cap-box" id="cap-box" hidden><span class="cap-size" id="cap-size"></span></div>
+            </div>
+          </div>
+        </div>
+        <p class="tool-small" id="cap-side-tip" hidden>To scroll while you record, put this window next to the one you’re sharing, or share the other tab’s whole window.</p>
+      </section>
+
+      <!-- The last thing saved -->
+      <section class="tool-card cap-result" id="cap-result" aria-live="polite" hidden>
+        <img id="cap-result-img" alt="">
+        <div>
+          <h2 class="tool-subtitle" id="cap-result-title">Saved</h2>
+          <p class="tool-text" id="cap-result-text">It’s in your Downloads folder.</p>
+          <a class="btn btn-soft btn-sm" id="cap-result-save">Save again</a>
+        </div>
+      </section>
+
+      <section class="tool-card tool-help" aria-labelledby="cap-help-title">
+        <h2 class="tool-title" id="cap-help-title">Good to know</h2>
+        <ul class="tool-list">
+          <li><strong>Private.</strong> The tab you share goes straight from your browser to this page, and nowhere else. The picture is made on your computer.</li>
+          <li><strong>GIFs</strong> record up to a minute at 10 frames a second, up to 800 pixels wide. In Chrome and Edge, press <em>Scroll from here</em> and scroll with your mouse wheel over the picture.</li>
+          <li><strong>Want the video or song itself,</strong> not a picture of it? That takes the free <a href="./#install">Just download it extension</a>.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <img src="assets/icon.svg" alt="" width="28" height="28" loading="lazy">
+          <span>Just download it</span>
+        </a>
+        <p>Made by <a href="https://peterwild.pw">Peter Wild</a>. Questions and ideas are welcome at <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/peter-w07/Just-download-it" data-link="github">Source code on GitHub</a></li>
+          <li><a href="https://github.com/peter-w07/Just-download-it/blob/main/LICENSE" data-link="license">MIT licensed</a></li>
+          <li><a href="download.html">Paste a link</a></li>
+          <li><a href="capture.html" aria-current="page">Screenshot or GIF a tab</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-note">
+        <h2 class="footer-heading">Please download responsibly</h2>
+        <p>Save what you have the right to: your own uploads, things shared with you to keep, and content whose licence allows it. Creators are paid by views and streams, so keep supporting the ones you love.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-legal">
+      <p>YouTube, Spotify, Apple Music, Instagram, TikTok, X, Twitch, Facebook, Snapchat and Medal are trademarks of their owners. Just download it is an independent project, not affiliated with or endorsed by any of them. Video and audio processing by <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> (MPL-2.0).</p>
+      <p>© <span data-year>2026</span> Peter Wild</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

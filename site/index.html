@@ -53,6 +53,7 @@
           <li><a href="#features">Features</a></li>
           <li><a href="#how">How it works</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="download.html">Paste a link</a></li>
         </ul>
       </nav>
       <a class="btn btn-primary btn-sm" href="#install">Install</a>
@@ -109,6 +110,35 @@
           </div>
           <figcaption>On YouTube, the Download button sits next to Like. Every quality, from 4K down to 144p, plus MP3 and M4A.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- Tools on this website ------------------------------------------- -->
+    <section class="section section-tools" id="tools" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">On this website</p>
+          <h2 id="tools-title">Paste a link, or screenshot any tab</h2>
+          <p class="lede">Paste a link here and the extension opens with it. Screenshots and GIFs of any tab work right in your browser, with nothing to install.</p>
+        </div>
+        <div class="tools">
+          <div class="tool-tile">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+            <h3>Paste a link</h3>
+            <p>A YouTube video, a TikTok, a song on Spotify: paste it and Just download it opens with it. Or type <code>justdownloadit.peterwild.pw/</code> in front of any link in the address bar.</p>
+            <form class="linkbox linkbox-sm" action="download.html" method="get">
+              <label class="visually-hidden" for="tools-link">Link to download</label>
+              <input id="tools-link" name="url" type="text" inputmode="url" spellcheck="false" autocapitalize="off" placeholder="Paste a link" required>
+              <button class="btn btn-primary" type="submit">Download</button>
+            </form>
+          </div>
+          <div class="tool-tile">
+            <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3>Screenshot or GIF any tab</h3>
+            <p>Share a tab with this site, drag a box around a post, a comment thread or a chart, and save it as a PNG, or record a GIF while you scroll. No install needed, and nothing is uploaded.</p>
+            <p class="tool-go"><a class="btn btn-ghost btn-md" href="capture.html">Open the screenshot tool</a></p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -708,6 +738,8 @@
         <ul class="footer-links">
           <li><a href="https://github.com/peter-w07/Just-download-it" data-link="github">Source code on GitHub</a></li>
           <li><a href="https://github.com/peter-w07/Just-download-it/blob/main/LICENSE" data-link="license">MIT licensed</a></li>
+          <li><a href="download.html">Paste a link</a></li>
+          <li><a href="capture.html">Screenshot or GIF a tab</a></li>
           <li><a href="privacy.html">Privacy policy</a></li>
         </ul>
       </div>

@@ -5,16 +5,20 @@
 //   rr1---sn-test.googlevideo.com   - YouTube's stream servers
 //   i.ytimg.com                     - YouTube thumbnails
 //   generic.test                    - an ordinary site for the generic handler
+//   justdownloadit.peterwild.pw     - the extension's website (site/), served like Cloudflare Pages
 // Chrome is started with --host-resolver-rules pointing those names here.
 import { createReadStream, readFileSync, statSync } from 'node:fs';
 import https from 'node:https';
-import { join } from 'node:path';
+import { dirname, extname, join, normalize, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { carousel, photo, reel } from '../fixtures/instagram.js';
 import { player as youtubePlayer } from '../fixtures/youtube.js';
 
 export const IG_HOST = 'www.instagram.com';
 export const CDN_HOST = 'scontent-test.cdninstagram.com';
 export const GENERIC_HOST = 'generic.test';
+export const SITE_HOST = 'justdownloadit.peterwild.pw';
+const SITE_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'site');
 export const YT_HOST = 'www.youtube.com';
 export const GVS_HOST = 'rr1---sn-test.googlevideo.com';
 export const YTIMG_HOST = 'i.ytimg.com';
@@ -84,6 +88,17 @@ const CDN_FILES = {
 };
 
 const MIME = { jpg: 'image/jpeg', mp4: 'video/mp4', webm: 'video/webm', json: 'application/json', html: 'text/html; charset=utf-8' };
+const SITE_MIME = {
+  '.html': MIME.html,
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.webp': 'image/webp',
+  '.jpg': MIME.jpg,
+  '.txt': 'text/plain; charset=utf-8',
+};
 
 export function startServer({ media, key, cert }) {
   const requests = [];
@@ -104,6 +119,7 @@ export function startServer({ media, key, cert }) {
       if (host === YT_HOST) return youtube(req, res, url);
       if (host === GVS_HOST) return googlevideo(req, res, url);
       if (host === YTIMG_HOST) return file(req, res, join(media, 'poster.jpg'), MIME.jpg);
+      if (host === SITE_HOST) return website(res, url);
       send(res, 404, 'text/plain', 'unknown host');
     } catch (err) {
       send(res, 500, 'text/plain', String(err.stack || err));
@@ -111,6 +127,29 @@ export function startServer({ media, key, cert }) {
   });
 
   const cdnBase = () => `https://${CDN_HOST}:${state.port}`;
+
+  /** site/ as Cloudflare Pages serves it: the file, else the same name + .html, else 404.html with a 404. */
+  function website(res, url) {
+    const isFile = (path) => {
+      try {
+        return statSync(path).isFile();
+      } catch {
+        return false;
+      }
+    };
+    let path = '';
+    try {
+      path = normalize(join(SITE_DIR, decodeURIComponent(url.pathname)));
+    } catch {
+      /* a bad escape: not found */
+    }
+    if (path && path.startsWith(SITE_DIR + sep)) {
+      for (const candidate of [path, join(path, 'index.html'), `${path}.html`]) {
+        if (isFile(candidate)) return send(res, 200, SITE_MIME[extname(candidate)] || 'application/octet-stream', readFileSync(candidate));
+      }
+    }
+    send(res, 404, MIME.html, readFileSync(join(SITE_DIR, '404.html')));
+  }
 
   function send(res, status, type, body, headers = {}) {
     res.writeHead(status, { 'Content-Type': type, 'Cache-Control': 'no-store', ...headers });

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Just download it</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // "justdownloadit.peterwild.pw/<a link>": there's no such page, so the host
+    // (Cloudflare Pages, GitHub Pages) serves this one. If what follows the
+    // address looks like a link (a domain, then a slash), hand it to the
+    // "Paste a link" page. Anything else really is a missing page.
+    (function () {
+      var rest = location.pathname.replace(/^\/+/, '') + location.search + location.hash;
+      if (/^(https?:\/*)?([a-z0-9-]+\.)+[a-z]{2,}(:\d+)?\//i.test(rest)) {
+        location.replace('/download.html?url=' + encodeURIComponent(rest));
+      }
+    })();
+  </script>
+  <!-- Root-relative: this page is served at whatever address was asked for. -->
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main id="main">
+    <section class="page-hero tool-hero" aria-labelledby="page-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container container-narrow">
+        <p class="eyebrow">Not found</p>
+        <h1 id="page-title">There’s no page here</h1>
+        <p class="lede">To download something, put <code>justdownloadit.peterwild.pw/</code> in front of its whole link, like <code>justdownloadit.peterwild.pw/youtube.com/watch?v=…</code>, or paste it on the <a href="/download.html">Paste a link</a> page.</p>
+        <p class="tool-actions"><a class="btn btn-primary btn-md" href="/">Go to the homepage</a> <a class="btn btn-ghost btn-md" href="/download.html">Paste a link</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -6,6 +6,9 @@
  * pick what to save → the service worker downloads it and reports progress
  * here and on the toolbar badge, so the popup can be closed at any time.
  * The popup also starts "Save this web page" (PNG / GIF) on the current tab.
+ * The extension's website can hand it a link too (content/site-bridge.js): the
+ * service worker leaves it in session storage and opens the popup, or opens
+ * this page in a small window of its own (?window=1) where it can't.
  *
  * Access to websites: Firefox lets people install an extension without its
  * host permissions (or take them back later), and Chrome's site access can be
@@ -29,6 +32,10 @@ const access = $('access');
 chrome.runtime.connect({ name: 'jdi-popup' });
 
 const LAST_KEY = 'popupLast';
+const PENDING_KEY = 'popupPending'; // a link from the website, waiting to be looked up
+const PENDING_MS = 60 * 1000;
+// In a window of its own there's no "current tab" to save as a PNG or GIF.
+const OWN_WINDOW = new URLSearchParams(location.search).has('window');
 const BUNDLES_KEY = 'popupBundles';
 const REMEMBER_MS = 30 * 60 * 1000;
 
@@ -570,9 +577,10 @@ $('settings').addEventListener('click', () => {
 
 async function start() {
   checkAccess();
+  if (OWN_WINDOW) document.querySelector('.capture').hidden = true;
   const [opened, stored, tabs] = await Promise.all([
     chrome.runtime.sendMessage({ type: 'jdi:popup-open' }).catch(() => null),
-    chrome.storage.session.get([LAST_KEY, BUNDLES_KEY]).catch(() => ({})),
+    chrome.storage.session.get([LAST_KEY, BUNDLES_KEY, PENDING_KEY]).catch(() => ({})),
     chrome.tabs.query({ active: true, currentWindow: true }).catch(() => []),
     settingsReady,
   ]);
@@ -582,7 +590,14 @@ async function start() {
   for (const entry of (opened && opened.statuses) || []) statuses.set(entry.batch, entry);
   renderDownloads();
 
-  const tab = tabs[0];
+  const pending = stored && stored[PENDING_KEY];
+  if (pending) chrome.storage.session.remove(PENDING_KEY).catch(() => {});
+  if (pending && typeof pending.url === 'string' && Date.now() - pending.time < PENDING_MS) {
+    input.value = pending.url;
+    lookUp(pending.url);
+  }
+
+  const tab = OWN_WINDOW ? null : tabs[0];
   if (tab && /^https?:/i.test(tab.url || '')) {
     let host = '';
     try {

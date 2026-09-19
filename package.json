@@ -1,6 +1,6 @@
 {
   "name": "just-download-it",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "description": "Chrome extension: right-click any photo or video and just download it, in the quality you pick.",
   "type": "module",

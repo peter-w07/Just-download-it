@@ -58,6 +58,10 @@ const MAX_SONG_FILES_PER_REQUEST = 500;
 const MAX_ZIP_ENTRIES = 300;
 const MAX_MIX_ENTRIES = 200;
 const POPUP_URL = chrome.runtime.getURL('popup/popup.html');
+// The extension's website. Its "Paste a link" page can ask for a link to be
+// opened in the popup (content/site-bridge.js); the popup picks it up from here.
+const SITE_HOST = 'justdownloadit.peterwild.pw';
+const POPUP_PENDING_KEY = 'popupPending';
 // The extension's own origin: chrome-extension://<id> or moz-extension://<uuid>.
 const OWN_ORIGIN = new URL(chrome.runtime.getURL('')).origin;
 // Chrome only. Where it's missing (Firefox), downloads.download keeps the names it's given.
@@ -322,6 +326,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
   if (message.type === 'jdi:open-settings' && sender.tab) {
     return reply(openSettings(), sendResponse);
+  }
+  if (message.type === 'jdi:site-open-link' && sender.tab && isOwnSite(sender)) {
+    return reply(openLinkFromSite(message.url, sender.tab), sendResponse);
   }
 
   // From the offscreen document (it has no tab).
@@ -1546,6 +1553,42 @@ async function popupOpened() {
   const statuses = Array.from(popupStatuses.values());
   if (!statuses.some((s) => !s.final)) chrome.action.setBadgeText({ text: '' }).catch(() => {});
   return { ok: true, statuses };
+}
+
+function isOwnSite(sender) {
+  if (sender.frameId !== 0) return false;
+  try {
+    const url = new URL(sender.url);
+    return url.protocol === 'https:' && url.hostname === SITE_HOST;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The website's "Paste a link" page (or a link typed after its address) asks
+ * for a link: open the popup with it, where the person picks what to save.
+ * Opening the toolbar popup needs Chrome 127+ and a focused window, and Firefox
+ * only allows it straight from a click, so otherwise the popup opens in a small
+ * window of its own (a tab on Firefox for Android).
+ */
+async function openLinkFromSite(url, tab) {
+  const link = String(url || '').trim();
+  if (!/^https?:\/\/[^\s]+$/i.test(link) || link.length > 4096) return { ok: false, error: 'That doesn’t look like a web link.' };
+  await chrome.storage.session.set({ [POPUP_PENDING_KEY]: { url: link, time: Date.now() } });
+  try {
+    await chrome.action.openPopup({ windowId: tab.windowId });
+    return { ok: true, opened: 'popup' };
+  } catch {
+    /* not allowed here: fall back to a window */
+  }
+  // Firefox for Android has no windows: a tab it is.
+  if (chrome.windows && chrome.windows.create) {
+    await chrome.windows.create({ url: `${POPUP_URL}?window=1`, type: 'popup', width: 420, height: 640, focused: true });
+    return { ok: true, opened: 'window' };
+  }
+  await chrome.tabs.create({ url: `${POPUP_URL}?window=1`, active: true });
+  return { ok: true, opened: 'tab' };
 }
 
 async function captureActiveTab(mode) {

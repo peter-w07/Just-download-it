@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paste a link · Just download it</title>
+  <meta name="description" content="Paste a link from YouTube, TikTok, Instagram, Spotify, X or any site, and Just download it opens with it. Or put justdownloadit.peterwild.pw/ in front of any link.">
+  <meta name="author" content="Peter Wild">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0f1d" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://justdownloadit.peterwild.pw/download.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://justdownloadit.peterwild.pw/download.html">
+  <meta property="og:site_name" content="Just download it">
+  <meta property="og:title" content="Paste a link · Just download it">
+  <meta property="og:description" content="Paste a link from YouTube, TikTok, Instagram, Spotify, X or any site, and Just download it opens with it.">
+  <meta property="og:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
+  <meta property="og:image:width" content="1400">
+  <meta property="og:image:height" content="560">
+  <meta property="og:image:alt" content="The Just download it icon beside a Download button with a quality menu open: 4K, 1080p, songs as MP3 or M4A, and the thumbnail.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://justdownloadit.peterwild.pw/assets/promo-marquee.png">
+
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icon-128.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <script src="download.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Just download it, home">
+        <img src="assets/icon.svg" alt="" width="30" height="30">
+        <span>Just download it</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="./#sites">Sites</a></li>
+          <li><a href="./#features">Features</a></li>
+          <li><a href="./#how">How it works</a></li>
+          <li><a href="./#faq">FAQ</a></li>
+          <li><a href="download.html" aria-current="page">Paste a link</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="./#install">Install</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero tool-hero" aria-labelledby="page-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container container-narrow">
+        <p class="eyebrow">Paste a link</p>
+        <h1 id="page-title">Paste a link. Just download it.</h1>
+        <p class="lede">A YouTube video, a TikTok, a song on Spotify, an Instagram post: paste its link and Just download it opens with it, ready to save in the quality you pick.</p>
+
+        <form class="linkbox" id="link-form" autocomplete="off">
+          <label class="visually-hidden" for="link">Link to download</label>
+          <input id="link" name="url" type="text" inputmode="url" spellcheck="false" autocapitalize="off" placeholder="https://www.youtube.com/watch?v=…" required>
+          <button class="btn btn-primary" type="submit">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
+            Download
+          </button>
+        </form>
+        <p class="linkbox-tip">Shortcut: in the address bar, put <code>justdownloadit.peterwild.pw/</code> in front of any link and press Enter.</p>
+      </div>
+    </section>
+
+    <div class="container container-narrow tool-body">
+      <!-- What happens with the link. download.js shows one of these. -->
+      <section class="tool-card" id="link-summary" hidden aria-live="polite">
+        <div class="link-chip">
+          <span class="link-site" data-link-site></span>
+          <span class="link-url" data-link-url></span>
+        </div>
+
+        <!-- The extension is installed: it opens with the link. -->
+        <div data-state="extension" hidden>
+          <h2 class="tool-title" data-ext-title>Opening it in Just download it…</h2>
+          <p class="tool-text" data-ext-text>Pick what to save in the menu that opens.</p>
+          <div class="tool-actions">
+            <button class="btn btn-primary btn-md" type="button" data-open-ext>
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4.5-4.5M12 15l-4.5-4.5M5 19.5h14"/></svg>
+              Open in Just download it
+            </button>
+          </div>
+        </div>
+
+        <!-- No extension: how to get it, and what works without it. -->
+        <div data-state="no-extension" hidden>
+          <h2 class="tool-title">Downloading this needs the free extension</h2>
+          <p class="tool-text">Browsers don’t let one website read another, so no website can fetch a video from YouTube, TikTok or Instagram by itself without sending it through a server. Just download it does it inside your browser, on your computer, with nothing uploaded.</p>
+          <div class="store-row store-row-card">
+            <a class="store-btn is-review" data-store="chrome">
+              <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+              <span class="store-text">
+                <span class="store-title">Add to Chrome</span>
+                <span class="store-meta">In review, coming soon</span>
+              </span>
+            </a>
+            <a class="store-btn is-review" data-store="firefox">
+              <span class="store-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2.5"/><path d="M3 9h18M6.5 6.75h.01M9 6.75h.01M12 12v5M9.5 14.5h5"/></svg></span>
+              <span class="store-text">
+                <span class="store-title">Add to Firefox</span>
+                <span class="store-meta">In review, coming soon</span>
+              </span>
+            </a>
+          </div>
+          <p class="review-note" data-review-note><span data-review-text>Both store listings are in review right now.</span> Until then, you can <a href="./#install-source">install it from source</a>.</p>
+          <p class="tool-small">Already have it? Update it to version 0.4.1 or newer, or click <strong>Just download it</strong> in your toolbar and paste the link there.
+            <button class="btn btn-soft btn-xs" type="button" data-copy-link><span class="copy-label">Copy the link</span></button>
+          </p>
+        </div>
+
+        <!-- A direct file link: it can simply be opened. -->
+        <div class="tool-split" data-state="file" hidden>
+          <div>
+            <h3 class="tool-subtitle">It’s a file</h3>
+            <p class="tool-text">Open it, then right-click it and choose <strong>Save as</strong>.</p>
+          </div>
+          <a class="btn btn-ghost btn-md" data-open-file target="_blank" rel="noopener noreferrer">Open the file</a>
+        </div>
+
+        <!-- Always: a picture or GIF of the page, no install needed. -->
+        <div class="tool-split" data-state="capture" hidden>
+          <div>
+            <h3 class="tool-subtitle">No install: save a picture of it</h3>
+            <p class="tool-text">Open the page, share its tab with this site, and save any part of it as a PNG or a GIF. Works on a computer.</p>
+          </div>
+          <a class="btn btn-ghost btn-md" data-capture-link href="capture.html">Screenshot or GIF</a>
+        </div>
+      </section>
+
+      <section class="tool-card tool-help" aria-labelledby="how-title">
+        <h2 class="tool-title" id="how-title">Three ways to use it</h2>
+        <ol class="tool-list">
+          <li><strong>Paste a link here.</strong> If Just download it is installed, it opens with the link and lists every quality.</li>
+          <li><strong>Type it in front of a link.</strong> Add <code>justdownloadit.peterwild.pw/</code> before any address, like <code>justdownloadit.peterwild.pw/youtube.com/watch?v=…</code>, and you land here with it filled in.</li>
+          <li><strong>Screenshot or GIF any tab.</strong> No install needed: <a href="capture.html">share a tab with this site</a> and save any part of it.</li>
+        </ol>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="./">
+          <img src="assets/icon.svg" alt="" width="28" height="28" loading="lazy">
+          <span>Just download it</span>
+        </a>
+        <p>Made by <a href="https://peterwild.pw">Peter Wild</a>. Questions and ideas are welcome at <a href="mailto:peter@peterwild.pw">peter@peterwild.pw</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/peter-w07/Just-download-it" data-link="github">Source code on GitHub</a></li>
+          <li><a href="https://github.com/peter-w07/Just-download-it/blob/main/LICENSE" data-link="license">MIT licensed</a></li>
+          <li><a href="download.html" aria-current="page">Paste a link</a></li>
+          <li><a href="capture.html">Screenshot or GIF a tab</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-note">
+        <h2 class="footer-heading">Please download responsibly</h2>
+        <p>Save what you have the right to: your own uploads, things shared with you to keep, and content whose licence allows it. Creators are paid by views and streams, so keep supporting the ones you love.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="footer-legal">
+      <p>YouTube, Spotify, Apple Music, Instagram, TikTok, X, Twitch, Facebook, Snapchat and Medal are trademarks of their owners. Just download it is an independent project, not affiliated with or endorsed by any of them. Video and audio processing by <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> (MPL-2.0).</p>
+      <p>© <span data-year>2026</span> Peter Wild</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

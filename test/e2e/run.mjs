@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { ALL_FORMATS, BufferSource, Input } from 'mediabunny';
 import puppeteer from 'puppeteer';
 import { prepare } from './setup.mjs';
-import { CDN_HOST, CODES, GENERIC_HOST, GVS_HOST, HIGHLIGHT_ID, IG_HOST, PKS, YT_HOST, YTIMG_HOST, startServer } from './server.mjs';
+import { CDN_HOST, CODES, GENERIC_HOST, GVS_HOST, HIGHLIGHT_ID, IG_HOST, PKS, SITE_HOST, YT_HOST, YTIMG_HOST, startServer } from './server.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -63,6 +63,7 @@ const server = await startServer(fixtures);
 const PORT = server.port;
 const IG = `https://${IG_HOST}:${PORT}`;
 const GENERIC = `https://${GENERIC_HOST}:${PORT}`;
+const SITE = `https://${SITE_HOST}:${PORT}`;
 
 const browser = await puppeteer.launch({
   headless: !process.env.HEADFUL,
@@ -72,7 +73,7 @@ const browser = await puppeteer.launch({
   acceptInsecureCerts: true,
   defaultViewport: { width: 1280, height: 900 },
   args: [
-    `--host-resolver-rules=${[IG_HOST, CDN_HOST, GENERIC_HOST, YT_HOST, GVS_HOST, YTIMG_HOST].map((h) => `MAP ${h} 127.0.0.1`).join(", ")}`,
+    `--host-resolver-rules=${[IG_HOST, CDN_HOST, GENERIC_HOST, YT_HOST, GVS_HOST, YTIMG_HOST, SITE_HOST].map((h) => `MAP ${h} 127.0.0.1`).join(", ")}`,
     '--ignore-certificate-errors',
     '--no-first-run',
     '--no-default-browser-check',
@@ -881,6 +882,43 @@ test('options page saves settings', async () => {
   // The settings page shows a live example path for each kind of download.
   assert.match(await page.$eval('#downloadExample', (n) => n.textContent), /^Downloads\/Just Download It\/Instagram\//);
   assert.match(await page.$eval('#albumExample', (n) => n.textContent), /Just Download It\/Spotify\/After Hours\/01 - The Weeknd - Alone Again\.mp3$/);
+  await page.close();
+});
+
+test('website: a link typed after its address opens in the popup, looked up', async () => {
+  const link = `${GENERIC}/media/clip.mp4`;
+  // "justdownloadit.peterwild.pw/<link>" has no page: 404.html sends it to the Paste a link page.
+  const page = await openPage(`${SITE}/${link}`);
+  await waitFor(() => page.url().startsWith(`${SITE}/download.html?url=`), { message: 'the redirect to download.html' });
+  await page.waitForSelector('[data-state="extension"]:not([hidden])', { timeout: 5000 });
+  assert.equal(await page.$eval('#link', (n) => n.value), link);
+  assert.equal(await page.$eval('html', (n) => n.dataset.jdiExtension), (await (await worker()).evaluate(() => chrome.runtime.getManifest().version)));
+  // Not one of the known sites, so it waits for a click rather than opening by itself.
+  assert.match(await page.$eval('[data-ext-title]', (n) => n.textContent), /generic\.test/);
+  const popupTarget = browser.waitForTarget((t) => t.url().includes(`${EXTENSION_ID}/popup/popup.html`), { timeout: 10000 });
+  await page.click('[data-open-ext]');
+  const popup = await (await popupTarget).asPage();
+  await waitFor(() => popup.evaluate(() => document.getElementById('link').value), { message: 'the link in the popup' });
+  assert.equal(await popup.evaluate(() => document.getElementById('link').value), link);
+  await waitFor(() => popup.evaluate(() => document.querySelectorAll('#result .row').length > 0), { message: 'the popup to list what can be saved' });
+  await waitFor(async () => /open in Just download it/i.test(await page.$eval('[data-ext-title]', (n) => n.textContent)), { message: 'the page to confirm' });
+  // In a window of its own there's no current tab to save as a PNG or GIF.
+  if (popup.url().includes('window=1')) assert.equal(await popup.evaluate(() => document.querySelector('.capture').hidden), true);
+  await popup.close().catch(() => {});
+  // The shortcut address itself is answered with 404.html and a 404 status, which Chrome logs.
+  assert.deepEqual(page.jdiErrors.filter((e) => !/status of 404/.test(e)), []);
+  await page.close();
+});
+
+test('website: other sites cannot ask the extension to open links', async () => {
+  const page = await openPage(`${GENERIC}/`);
+  const opened = await page.evaluate(() => new Promise((resolve) => {
+    window.addEventListener('message', (e) => e.data && e.data.jdi === 'open-link-result' && resolve(true));
+    window.postMessage({ jdi: 'open-link', url: 'https://generic.test/media/clip.mp4' }, '/');
+    setTimeout(() => resolve(false), 1500);
+  }));
+  assert.equal(opened, false);
+  assert.equal(await page.$eval('html', (n) => n.dataset.jdiExtension || ''), '');
   await page.close();
 });
 
